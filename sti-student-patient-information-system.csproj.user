@@ -19,5 +19,8 @@
     <Compile Update="report.cs">
       <SubType>UserControl</SubType>
     </Compile>
+    <Compile Update="settings.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
   </ItemGroup>
 </Project>

@@ -587,5 +587,168 @@ namespace sti_student_patient_information_system
                 return new DataTable();
             }
         }
+
+        // ADD THESE METHODS TO DatabaseHelper.cs:
+
+        public static DataTable GetUserProfile(string email)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"SELECT id, full_name, email, phone, address, date_of_birth, 
+                            gender, position, department, profile_photo_path, role, created_date 
+                            FROM users WHERE email = @email";
+
+                    using (var adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@email", email);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading user profile: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
+            }
+        }
+
+        public static bool UpdateUserProfile(int userId, string fullName, string phone, string address, 
+            DateTime? dateOfBirth, string gender, string position, string department, string profilePhotoPath)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"UPDATE users SET 
+                            full_name = @fullName, 
+                            phone = @phone, 
+                            address = @address,
+                            date_of_birth = @dateOfBirth,
+                            gender = @gender,
+                            position = @position,
+                            department = @department,
+                            profile_photo_path = @profilePhotoPath
+                            WHERE id = @userId";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.Parameters.AddWithValue("@fullName", fullName);
+                        command.Parameters.AddWithValue("@phone", phone ?? "");
+                        command.Parameters.AddWithValue("@address", address ?? "");
+                        command.Parameters.AddWithValue("@dateOfBirth", dateOfBirth?.Date ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@gender", gender ?? "");
+                        command.Parameters.AddWithValue("@position", position ?? "");
+                        command.Parameters.AddWithValue("@department", department ?? "");
+                        command.Parameters.AddWithValue("@profilePhotoPath", profilePhotoPath ?? "");
+
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating user profile: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public static bool ChangeUserPassword(int userId, string currentPassword, string newPassword)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+            
+                    // First verify current password
+                    string verifyQuery = "SELECT password FROM users WHERE id = @userId";
+                    using (var verifyCommand = new MySqlCommand(verifyQuery, connection))
+                    {
+                        verifyCommand.Parameters.AddWithValue("@userId", userId);
+                        string storedPassword = verifyCommand.ExecuteScalar()?.ToString();
+                
+                        if (storedPassword != currentPassword)
+                        {
+                            MessageBox.Show("Current password is incorrect.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            return false;
+                        }
+                    }
+            
+                    // Update password
+                    string updateQuery = "UPDATE users SET password = @newPassword WHERE id = @userId";
+                    using (var updateCommand = new MySqlCommand(updateQuery, connection))
+                    {
+                        updateCommand.Parameters.AddWithValue("@userId", userId);
+                        updateCommand.Parameters.AddWithValue("@newPassword", newPassword);
+                
+                        int result = updateCommand.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error changing password: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public static int GetUserIdByEmail(string email)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = "SELECT id FROM users WHERE email = @email";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@email", email);
+                        object result = command.ExecuteScalar();
+                        return result != null ? Convert.ToInt32(result) : 0;
+                    }
+                }
+            }
+            catch
+            {
+                return 0;
+            }
+        }
+
+        public static bool LogUserActivity(int userId, string actionType, string description, string ipAddress = "")
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"INSERT INTO activity_logs (user_id, action_type, description, ip_address) 
+                            VALUES (@userId, @actionType, @description, @ipAddress)";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.Parameters.AddWithValue("@actionType", actionType);
+                        command.Parameters.AddWithValue("@description", description);
+                        command.Parameters.AddWithValue("@ipAddress", ipAddress);
+
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch
+            {
+                return false;
+            }
+        }
     }
 }

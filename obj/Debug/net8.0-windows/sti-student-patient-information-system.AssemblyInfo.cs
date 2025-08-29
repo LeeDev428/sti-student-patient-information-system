@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("sti-student-patient-information-system")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+8c8076beded9b62c749caf704f6de92580b5738b")]
 [assembly: System.Reflection.AssemblyProductAttribute("sti-student-patient-information-system")]
 [assembly: System.Reflection.AssemblyTitleAttribute("sti-student-patient-information-system")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

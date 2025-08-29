@@ -69,9 +69,10 @@ namespace sti_student_patient_information_system
                 ShowInventoryContent();
             };
 
+            // UPDATED: Add Settings functionality
             btnSettings.Click += (s, e) => {
                 SetActiveButton(btnSettings);
-                MessageBox.Show("Settings functionality coming soon!", "Info", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ShowSettingsContent();
             };
 
             btnLogout.Click += (s, e) => {
@@ -114,6 +115,13 @@ namespace sti_student_patient_information_system
             inventory inventoryContent = new inventory();
             inventoryContent.SetupForMainLayout(currentUserName, this);
             SwitchContent(inventoryContent);
+        }
+
+        private void ShowSettingsContent()
+        {
+            settings settingsContent = new settings();
+            settingsContent.SetupForMainLayout(currentUserName, this);
+            SwitchContent(settingsContent);
         }
 
         private void LoadImages()
