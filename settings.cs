@@ -12,6 +12,7 @@ namespace sti_student_patient_information_system
         private string currentUserName;
         private main_layout parentMainLayout;
         private int currentUserId;
+        private string currentUserEmail; // Add this to store email
 
         public settings()
         {
@@ -38,10 +39,7 @@ namespace sti_student_patient_information_system
                 ChangeProfilePhoto();
             };
 
-            // Forgot Password button click
-            btnForgotPassword.Click += (s, e) => {
-                ForgotPassword();
-            };
+          
 
             // Name textbox placeholder functionality
             txtName.GotFocus += (s, e) => {
@@ -140,21 +138,34 @@ namespace sti_student_patient_information_system
         {
             try
             {
-                // Get user email from current user name (you might need to adjust this)
-                string userEmail = GetUserEmailFromName(currentUserName);
-                currentUserId = DatabaseHelper.GetUserIdByEmail(userEmail);
+                // FIXED: Get user email from current user name properly
+                currentUserEmail = DatabaseHelper.GetUserEmailByName(currentUserName);
 
-                DataTable userProfile = DatabaseHelper.GetUserProfile(userEmail);
+                if (string.IsNullOrEmpty(currentUserEmail))
+                {
+                    MessageBox.Show("Could not find user email. Please contact administrator.", "Error",
+                        MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
+                currentUserId = DatabaseHelper.GetUserIdByEmail(currentUserEmail);
+
+                DataTable userProfile = DatabaseHelper.GetUserProfile(currentUserEmail);
                 if (userProfile.Rows.Count > 0)
                 {
                     DataRow row = userProfile.Rows[0];
 
                     // Set name field
-                    txtName.Text = row["full_name"].ToString();
-                    txtName.ForeColor = Color.Black;
+                    string fullName = row["full_name"].ToString();
+                    if (!string.IsNullOrEmpty(fullName))
+                    {
+                        txtName.Text = fullName;
+                        txtName.ForeColor = Color.Black;
+                    }
 
                     // Load profile photo if exists
-                    LoadProfilePhoto(row["profile_photo_path"].ToString());
+                    string photoPath = row["profile_photo_path"].ToString();
+                    LoadProfilePhoto(photoPath);
                 }
             }
             catch (Exception ex)
@@ -164,20 +175,17 @@ namespace sti_student_patient_information_system
             }
         }
 
-        private string GetUserEmailFromName(string userName)
-        {
-            // This is a simple implementation - you might want to store the email differently
-            // For now, we'll assume the email is stored somewhere accessible
-            // You could modify this to get it from your login system
-            return "admin@sti.edu"; // Default for testing
-        }
-
         private void LoadProfilePhoto(string photoPath)
         {
             try
             {
                 if (!string.IsNullOrEmpty(photoPath) && File.Exists(photoPath))
                 {
+                    // Dispose of previous image if any
+                    if (picProfilePhoto.Image != null)
+                    {
+                        picProfilePhoto.Image.Dispose();
+                    }
                     picProfilePhoto.Image = Image.FromFile(photoPath);
                 }
                 else
@@ -194,6 +202,12 @@ namespace sti_student_patient_information_system
 
         private void CreateDefaultProfilePhoto()
         {
+            // Dispose of previous image if any
+            if (picProfilePhoto.Image != null)
+            {
+                picProfilePhoto.Image.Dispose();
+            }
+
             Bitmap defaultPhoto = new Bitmap(200, 200);
             using (Graphics g = Graphics.FromImage(defaultPhoto))
             {
@@ -225,7 +239,10 @@ namespace sti_student_patient_information_system
                 // Check if password change is requested
                 bool passwordChangeRequested = txtCurrentPassword.Text != "Current Password" &&
                                              txtNewPassword.Text != "New Password" &&
-                                             txtConfirmPassword.Text != "Confirm Password";
+                                             txtConfirmPassword.Text != "Confirm Password" &&
+                                             !string.IsNullOrWhiteSpace(txtCurrentPassword.Text) &&
+                                             !string.IsNullOrWhiteSpace(txtNewPassword.Text) &&
+                                             !string.IsNullOrWhiteSpace(txtConfirmPassword.Text);
 
                 if (passwordChangeRequested)
                 {
@@ -244,7 +261,7 @@ namespace sti_student_patient_information_system
                         "User changed password from settings");
                 }
 
-                // Update profile
+                // Update profile (name only for now - you can extend this to include other fields)
                 bool profileUpdated = DatabaseHelper.UpdateUserProfile(currentUserId,
                     txtName.Text.Trim(), "", "", null, "", "", "", "");
 
@@ -317,12 +334,41 @@ namespace sti_student_patient_information_system
 
                 if (openFileDialog.ShowDialog() == DialogResult.OK)
                 {
-                    // Load and display the selected image
-                    picProfilePhoto.Image = Image.FromFile(openFileDialog.FileName);
+                    // Create a directory for profile photos if it doesn't exist
+                    string profilePhotosDir = Path.Combine(Application.StartupPath, "ProfilePhotos");
+                    if (!Directory.Exists(profilePhotosDir))
+                    {
+                        Directory.CreateDirectory(profilePhotosDir);
+                    }
 
-                    // You could save the file path to database here
-                    MessageBox.Show("Profile photo updated successfully!", "Success",
-                        MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    // Generate unique filename
+                    string fileExtension = Path.GetExtension(openFileDialog.FileName);
+                    string newFileName = $"user_{currentUserId}_{DateTime.Now:yyyyMMddHHmmss}{fileExtension}";
+                    string newFilePath = Path.Combine(profilePhotosDir, newFileName);
+
+                    // Copy the selected file to our profile photos directory
+                    File.Copy(openFileDialog.FileName, newFilePath, true);
+
+                    // Load and display the selected image
+                    LoadProfilePhoto(newFilePath);
+
+                    // Save the file path to database
+                    bool photoUpdated = DatabaseHelper.UpdateUserProfilePhoto(currentUserId, newFilePath);
+
+                    if (photoUpdated)
+                    {
+                        MessageBox.Show("Profile photo updated successfully!", "Success",
+                            MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Log photo update
+                        DatabaseHelper.LogUserActivity(currentUserId, "profile_update",
+                            "User updated profile photo");
+                    }
+                    else
+                    {
+                        MessageBox.Show("Failed to save profile photo to database.", "Error",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
             }
             catch (Exception ex)
@@ -332,11 +378,7 @@ namespace sti_student_patient_information_system
             }
         }
 
-        private void ForgotPassword()
-        {
-            MessageBox.Show("Password reset request has been sent to your administrator.",
-                "Password Reset", MessageBoxButtons.OK, MessageBoxIcon.Information);
-        }
+        
 
         private void MakeRounded(Control control, int radius)
         {

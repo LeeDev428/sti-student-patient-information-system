@@ -17,7 +17,7 @@ namespace sti_student_patient_information_system
         private TextBox txtCurrentPassword;
         private TextBox txtNewPassword;
         private TextBox txtConfirmPassword;
-        private Button btnForgotPassword;
+  
         private Button btnSave;
 
         protected override void Dispose(bool disposing)
@@ -42,7 +42,7 @@ namespace sti_student_patient_information_system
             this.txtCurrentPassword = new TextBox();
             this.txtNewPassword = new TextBox();
             this.txtConfirmPassword = new TextBox();
-            this.btnForgotPassword = new Button();
+           
             this.btnSave = new Button();
 
             this.panelSettingsContainer.SuspendLayout();
@@ -127,15 +127,7 @@ namespace sti_student_patient_information_system
             this.txtConfirmPassword.Text = "Confirm Password";
             this.txtConfirmPassword.ForeColor = Color.Gray;
 
-            // Forgot Password Button - matches your image
-            this.btnForgotPassword.BackColor = Color.FromArgb(37, 99, 235);
-            this.btnForgotPassword.FlatStyle = FlatStyle.Flat;
-            this.btnForgotPassword.FlatAppearance.BorderSize = 0;
-            this.btnForgotPassword.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
-            this.btnForgotPassword.ForeColor = Color.White;
-            this.btnForgotPassword.Location = new Point(300, 320);
-            this.btnForgotPassword.Size = new Size(130, 35);
-            this.btnForgotPassword.Text = "Forgot Password";
+          
 
             // Save Button - matches your image
             this.btnSave.BackColor = Color.FromArgb(37, 99, 235);
@@ -157,7 +149,7 @@ namespace sti_student_patient_information_system
             this.panelSettingsContainer.Controls.Add(this.txtCurrentPassword);
             this.panelSettingsContainer.Controls.Add(this.txtNewPassword);
             this.panelSettingsContainer.Controls.Add(this.txtConfirmPassword);
-            this.panelSettingsContainer.Controls.Add(this.btnForgotPassword);
+          
             this.panelSettingsContainer.Controls.Add(this.btnSave);
 
             // UserControl properties

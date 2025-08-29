@@ -38,3 +38,5 @@ D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-informa
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.add_patients.resources
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.inventory.resources
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.report.resources
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.settings.resources
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti-student-patient-information-system.sourcelink.json

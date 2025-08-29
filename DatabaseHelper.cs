@@ -3,6 +3,7 @@ using System;
 using System.Data;
 using System.Windows.Forms;
 using System.Collections.Generic;
+using System.IO;
 
 namespace sti_student_patient_information_system
 {
@@ -74,6 +75,29 @@ namespace sti_student_patient_information_system
             catch
             {
                 return "User";
+            }
+        }
+
+        // ADD: Get user email by full name
+        public static string GetUserEmailByName(string fullName)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = "SELECT email FROM users WHERE full_name = @fullName LIMIT 1";
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@fullName", fullName);
+                        object result = command.ExecuteScalar();
+                        return result?.ToString() ?? "";
+                    }
+                }
+            }
+            catch
+            {
+                return "";
             }
         }
 
@@ -513,7 +537,7 @@ namespace sti_student_patient_information_system
         }
 
         public static bool AddInventoryItem(string itemName, int quantity, int quantityRemaining, 
-            DateTime receivedDate, DateTime? expirationDate, string category, string supplier, 
+            DateTime receivedDate, DateTime? expirationDate,  string supplier, 
             decimal costPerUnit, string notes, int createdBy)
         {
             try
@@ -523,10 +547,10 @@ namespace sti_student_patient_information_system
                     connection.Open();
                     string query = @"INSERT INTO inventory (
                             item_name, quantity, quantity_remaining, received_date, 
-                            expiration_date, category, supplier, cost_per_unit, notes, created_by
+                            expiration_date, supplier, cost_per_unit, notes, created_by
                             ) VALUES (
                             @itemName, @quantity, @quantityRemaining, @receivedDate,
-                            @expirationDate, @category, @supplier, @costPerUnit, @notes, @createdBy
+                            @expirationDate, @supplier, @costPerUnit, @notes, @createdBy
                             )";
 
                     using (var command = new MySqlCommand(query, connection))
@@ -536,7 +560,6 @@ namespace sti_student_patient_information_system
                         command.Parameters.AddWithValue("@quantityRemaining", quantityRemaining);
                         command.Parameters.AddWithValue("@receivedDate", receivedDate);
                         command.Parameters.AddWithValue("@expirationDate", expirationDate?.Date ?? (object)DBNull.Value);
-                        command.Parameters.AddWithValue("@category", category);
                         command.Parameters.AddWithValue("@supplier", supplier);
                         command.Parameters.AddWithValue("@costPerUnit", costPerUnit);
                         command.Parameters.AddWithValue("@notes", notes);
@@ -588,7 +611,7 @@ namespace sti_student_patient_information_system
             }
         }
 
-        // ADD THESE METHODS TO DatabaseHelper.cs:
+        // FIXED USER PROFILE METHODS:
 
         public static DataTable GetUserProfile(string email)
         {
@@ -597,8 +620,9 @@ namespace sti_student_patient_information_system
                 using (var connection = GetConnection())
                 {
                     connection.Open();
+                    // FIXED: Use created_date instead of created_at to match your database
                     string query = @"SELECT id, full_name, email, phone, address, date_of_birth, 
-                            gender, position, department, profile_photo_path, role, created_date 
+                            gender, position, department, profile_photo_path, role, created_at
                             FROM users WHERE email = @email";
 
                     using (var adapter = new MySqlDataAdapter(query, connection))
@@ -656,6 +680,33 @@ namespace sti_student_patient_information_system
             catch (Exception ex)
             {
                 MessageBox.Show($"Error updating user profile: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        // FIXED: Save profile photo path to database
+        public static bool UpdateUserProfilePhoto(int userId, string profilePhotoPath)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = "UPDATE users SET profile_photo_path = @profilePhotoPath WHERE id = @userId";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@userId", userId);
+                        command.Parameters.AddWithValue("@profilePhotoPath", profilePhotoPath ?? "");
+
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating profile photo: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }
@@ -747,6 +798,212 @@ namespace sti_student_patient_information_system
             }
             catch
             {
+                return false;
+            }
+        }
+
+        // ADD THESE METHODS TO YOUR EXISTING DatabaseHelper.cs:
+
+        public static DataTable GetWeeklyReport(DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"SELECT 
+                            DAYNAME(registration_date) as DayName,
+                            DAYOFWEEK(registration_date) as DayOrder,
+                            COUNT(*) as Count
+                            FROM patients 
+                            WHERE DATE(registration_date) BETWEEN @fromDate AND @toDate
+                            AND status = 'active'
+                            GROUP BY DAYNAME(registration_date), DAYOFWEEK(registration_date)
+                            ORDER BY DayOrder";
+
+                    using (var adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@fromDate", fromDate.Date);
+                        adapter.SelectCommand.Parameters.AddWithValue("@toDate", toDate.Date);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading weekly report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
+            }
+        }
+
+        public static DataTable GetMonthlyReport(DateTime fromDate, DateTime toDate)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"SELECT 
+                            MONTHNAME(registration_date) as MonthName,
+                            MONTH(registration_date) as MonthOrder,
+                            YEAR(registration_date) as Year,
+                            COUNT(*) as Count
+                            FROM patients 
+                            WHERE DATE(registration_date) BETWEEN @fromDate AND @toDate
+                            AND status = 'active'
+                            GROUP BY MONTHNAME(registration_date), MONTH(registration_date), YEAR(registration_date)
+                            ORDER BY Year, MonthOrder";
+
+                    using (var adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@fromDate", fromDate.Date);
+                        adapter.SelectCommand.Parameters.AddWithValue("@toDate", toDate.Date);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading monthly report: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
+            }
+        }
+
+        public static DataTable GetAllInventoryItemsWithStatus()
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"SELECT 
+                    id,
+                    item_name as 'Item Name',
+                    quantity as 'Quantity',
+                    quantity_remaining as 'Quantity Remaining',
+                    received_date as 'Received Date',
+                    expiration_date as 'Expiration Date',
+                    CASE 
+                        WHEN quantity_remaining < 10 THEN 'Low Stock'
+                        WHEN quantity_remaining BETWEEN 10 AND 20 THEN 'In Stock'
+                        WHEN quantity_remaining > 20 THEN 'High Stock'
+                        ELSE 'Unknown'
+                    END as 'Status',
+                    supplier,
+                    cost_per_unit,
+                    notes
+                    FROM inventory 
+                    WHERE status != 'discontinued'
+                    ORDER BY item_name ASC";
+
+                    using (var adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading inventory: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
+            }
+        }
+
+        public static DataTable GetInventoryItemById(int id)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"SELECT * FROM inventory WHERE id = @id";
+
+                    using (var adapter = new MySqlDataAdapter(query, connection))
+                    {
+                        adapter.SelectCommand.Parameters.AddWithValue("@id", id);
+                        DataTable dt = new DataTable();
+                        adapter.Fill(dt);
+                        return dt;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error loading inventory item: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return new DataTable();
+            }
+        }
+
+        public static bool UpdateInventoryItem(int id, string itemName, int quantity, int quantityRemaining, 
+            DateTime receivedDate, DateTime? expirationDate, string supplier, 
+            decimal costPerUnit, string notes)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = @"UPDATE inventory SET 
+                    item_name = @itemName,
+                    quantity = @quantity,
+                    quantity_remaining = @quantityRemaining,
+                    received_date = @receivedDate,
+                    expiration_date = @expirationDate,
+                    supplier = @supplier,
+                    cost_per_unit = @costPerUnit,
+                    notes = @notes
+                    WHERE id = @id";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        command.Parameters.AddWithValue("@itemName", itemName);
+                        command.Parameters.AddWithValue("@quantity", quantity);
+                        command.Parameters.AddWithValue("@quantityRemaining", quantityRemaining);
+                        command.Parameters.AddWithValue("@receivedDate", receivedDate);
+                        command.Parameters.AddWithValue("@expirationDate", expirationDate?.Date ?? (object)DBNull.Value);
+                        command.Parameters.AddWithValue("@supplier", supplier ?? "");
+                        command.Parameters.AddWithValue("@costPerUnit", costPerUnit);
+                        command.Parameters.AddWithValue("@notes", notes ?? "");
+
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error updating inventory item: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return false;
+            }
+        }
+
+        public static bool DeleteInventoryItem(int id)
+        {
+            try
+            {
+                using (var connection = GetConnection())
+                {
+                    connection.Open();
+                    string query = "UPDATE inventory SET status = 'discontinued' WHERE id = @id";
+
+                    using (var command = new MySqlCommand(query, connection))
+                    {
+                        command.Parameters.AddWithValue("@id", id);
+                        int result = command.ExecuteNonQuery();
+                        return result > 0;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error deleting inventory item: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return false;
             }
         }

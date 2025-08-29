@@ -11,6 +11,7 @@ namespace sti_student_patient_information_system
         private Panel panelInventoryContainer;
         private Button btnExportData;
         private Button btnEdit;
+        private Button btnAddItem; // NEW: Add item button
 
         protected override void Dispose(bool disposing)
         {
@@ -28,6 +29,7 @@ namespace sti_student_patient_information_system
             this.dgvInventory = new DataGridView();
             this.btnExportData = new Button();
             this.btnEdit = new Button();
+            this.btnAddItem = new Button(); // NEW: Initialize add button
 
             this.panelInventoryContainer.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvInventory)).BeginInit();
@@ -39,6 +41,17 @@ namespace sti_student_patient_information_system
             this.lblInventoryTitle.ForeColor = Color.Black;
             this.lblInventoryTitle.Location = new Point(50, 20);
             this.lblInventoryTitle.Text = "Medical Supplies Inventory";
+
+            // NEW: Add Item Button - positioned in upper right
+            this.btnAddItem.BackColor = Color.FromArgb(34, 197, 94); // Green color
+            this.btnAddItem.FlatStyle = FlatStyle.Flat;
+            this.btnAddItem.FlatAppearance.BorderSize = 0;
+            this.btnAddItem.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            this.btnAddItem.ForeColor = Color.White;
+            this.btnAddItem.Location = new Point(900, 20); // Upper right position
+            this.btnAddItem.Size = new Size(50, 50); // Square button
+            this.btnAddItem.Text = "+";
+            this.btnAddItem.UseVisualStyleBackColor = false;
 
             // Inventory Container Panel - matches your image background
             this.panelInventoryContainer.BackColor = Color.FromArgb(209, 213, 219);
@@ -87,6 +100,7 @@ namespace sti_student_patient_information_system
 
             // Add controls to UserControl
             this.Controls.Add(this.lblInventoryTitle);
+            this.Controls.Add(this.btnAddItem); // NEW: Add the button to controls
             this.Controls.Add(this.panelInventoryContainer);
             this.Controls.Add(this.btnExportData);
             this.Controls.Add(this.btnEdit);
