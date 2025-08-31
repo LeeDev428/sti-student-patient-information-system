@@ -15,6 +15,9 @@ namespace sti_student_patient_information_system
         {
             InitializeComponent();
             CreateContentPanel();
+            // ensure logo is sized and positioned correctly on start and when resized
+            this.Resize += Main_layout_Resize;
+            AdjustLogoSize();
         }
 
         public main_layout(string userName) : this()
@@ -154,53 +157,110 @@ namespace sti_student_patient_information_system
 
         private void CreateBellIcon()
         {
-            Bitmap bell = new Bitmap(40, 40);
-            using (Graphics g = Graphics.FromImage(bell))
+            try
             {
-                g.Clear(Color.Transparent);
-                g.SmoothingMode = SmoothingMode.AntiAlias;
-
-                using (Brush yellowBrush = new SolidBrush(Color.FromArgb(252, 211, 77)))
+                // use embedded bell image if available
+                if (Properties.Resources.bell != null)
                 {
-                    g.FillEllipse(yellowBrush, 5, 5, 30, 30);
-                }
-
-                using (Font font = new Font("Segoe UI", 16, FontStyle.Regular))
-                using (Brush blackBrush = new SolidBrush(Color.Black))
-                {
-                    g.DrawString("🔔", font, blackBrush, 8, 8);
-                }
-
-                using (Brush redBrush = new SolidBrush(Color.FromArgb(220, 38, 38)))
-                {
-                    g.FillEllipse(redBrush, 25, 5, 12, 12);
+                    // make sure it fits the control nicely
+                    picBellIcon.SizeMode = PictureBoxSizeMode.Zoom;
+                    picBellIcon.Image = new Bitmap(Properties.Resources.bell);
                 }
             }
-            picBellIcon.Image = bell;
+            catch
+            {
+                // fallback: preserve existing emoji-drawn icon if resources missing
+                Bitmap bell = new Bitmap(40, 40);
+                using (Graphics g = Graphics.FromImage(bell))
+                {
+                    g.Clear(Color.Transparent);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+
+                    using (Brush yellowBrush = new SolidBrush(Color.FromArgb(252, 211, 77)))
+                    {
+                        g.FillEllipse(yellowBrush, 5, 5, 30, 30);
+                    }
+
+                    using (Font font = new Font("Segoe UI", 16, FontStyle.Regular))
+                    using (Brush blackBrush = new SolidBrush(Color.Black))
+                    {
+                        g.DrawString("🔔", font, blackBrush, 8, 8);
+                    }
+
+                    using (Brush redBrush = new SolidBrush(Color.FromArgb(220, 38, 38)))
+                    {
+                        g.FillEllipse(redBrush, 25, 5, 12, 12);
+                    }
+                }
+                picBellIcon.Image = bell;
+            }
         }
 
         private void CreateUserAvatar()
         {
-            Bitmap avatar = new Bitmap(50, 50);
-            using (Graphics g = Graphics.FromImage(avatar))
+            try
+            {
+                if (Properties.Resources.user != null)
+                {
+                    // create a circular avatar with a white border to match UI
+                    picUserAvatar.Image = MakeCircularBitmap(Properties.Resources.user, 50, 3, Color.White);
+                    picUserAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+                }
+            }
+            catch
+            {
+                // fallback to generated avatar
+                Bitmap avatar = new Bitmap(50, 50);
+                using (Graphics g = Graphics.FromImage(avatar))
+                {
+                    g.Clear(Color.Transparent);
+                    g.SmoothingMode = SmoothingMode.AntiAlias;
+
+                    g.FillEllipse(Brushes.White, 0, 0, 50, 50);
+
+                    using (Brush blueBrush = new SolidBrush(Color.FromArgb(37, 99, 235)))
+                    {
+                        g.FillEllipse(blueBrush, 3, 3, 44, 44);
+                    }
+
+                    using (Font font = new Font("Segoe UI", 20, FontStyle.Regular))
+                    using (Brush whiteBrush = new SolidBrush(Color.White))
+                    {
+                        g.DrawString("👤", font, whiteBrush, 10, 10);
+                    }
+                }
+                picUserAvatar.Image = avatar;
+            }
+        }
+
+        private Bitmap MakeCircularBitmap(Image src, int diameter, int borderWidth = 0, Color? borderColor = null)
+        {
+            Bitmap dest = new Bitmap(diameter, diameter);
+            using (Graphics g = Graphics.FromImage(dest))
             {
                 g.Clear(Color.Transparent);
                 g.SmoothingMode = SmoothingMode.AntiAlias;
 
-                g.FillEllipse(Brushes.White, 0, 0, 50, 50);
-
-                using (Brush blueBrush = new SolidBrush(Color.FromArgb(37, 99, 235)))
+                using (GraphicsPath path = new GraphicsPath())
                 {
-                    g.FillEllipse(blueBrush, 3, 3, 44, 44);
+                    path.AddEllipse(0, 0, diameter, diameter);
+                    g.SetClip(path);
+
+                    // draw the source image scaled to fill
+                    g.DrawImage(src, new Rectangle(0, 0, diameter, diameter));
+                    g.ResetClip();
                 }
 
-                using (Font font = new Font("Segoe UI", 20, FontStyle.Regular))
-                using (Brush whiteBrush = new SolidBrush(Color.White))
+                if (borderWidth > 0 && borderColor.HasValue)
                 {
-                    g.DrawString("👤", font, whiteBrush, 10, 10);
+                    using (Pen p = new Pen(borderColor.Value, borderWidth))
+                    {
+                        p.Alignment = System.Drawing.Drawing2D.PenAlignment.Center;
+                        g.DrawEllipse(p, borderWidth / 2, borderWidth / 2, diameter - borderWidth, diameter - borderWidth);
+                    }
                 }
             }
-            picUserAvatar.Image = avatar;
+            return dest;
         }
 
         private void ApplyRoundedButtons()
@@ -238,6 +298,48 @@ namespace sti_student_patient_information_system
 
             activeButton.BackColor = Color.FromArgb(252, 211, 77);
             activeButton.ForeColor = Color.Black;
+        }
+
+        private void Main_layout_Resize(object sender, EventArgs e)
+        {
+            AdjustLogoSize();
+        }
+
+        private void AdjustLogoSize()
+        {
+            try
+            {
+                if (picLogo == null || panelHeader == null)
+                    return;
+
+                int maxWidth = 300;
+                int minWidth = 80;
+
+                // target width is a fraction of header width
+                int desiredWidth = Math.Max(minWidth, Math.Min(maxWidth, panelHeader.Width / 6));
+                int availableHeight = Math.Max(24, panelHeader.Height - 10);
+                int desiredHeight = availableHeight;
+
+                // preserve image aspect ratio when available
+                if (picLogo.Image != null && picLogo.Image.Width > 0)
+                {
+                    double aspect = (double)picLogo.Image.Height / picLogo.Image.Width;
+                    desiredHeight = (int)(desiredWidth * aspect);
+                    if (desiredHeight > availableHeight)
+                    {
+                        desiredHeight = availableHeight;
+                        desiredWidth = (int)(desiredHeight / aspect);
+                    }
+                }
+
+                picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+                picLogo.Size = new Size(desiredWidth, desiredHeight);
+                picLogo.Location = new Point(panelHeader.Width - picLogo.Width - 12, (panelHeader.Height - picLogo.Height) / 2);
+            }
+            catch
+            {
+                // swallow errors to avoid resizing crashes
+            }
         }
 
         // ADD PUBLIC PROPERTIES TO ACCESS BUTTONS

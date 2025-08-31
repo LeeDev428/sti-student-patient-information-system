@@ -14,8 +14,10 @@
         public Button btnSettings;
         public Button btnLogout;
         protected PictureBox picUserAvatar;
-        protected PictureBox picLogo;
-        protected PictureBox picBellIcon;
+    protected PictureBox picLogo;
+    protected PictureBox picBellIcon;
+    protected Panel panelUserCircle;
+    protected Label lblBellBadge;
 
         protected override void Dispose(bool disposing)
         {
@@ -41,6 +43,8 @@
             this.picUserAvatar = new PictureBox();
             this.picLogo = new PictureBox();
             this.picBellIcon = new PictureBox();
+            this.panelUserCircle = new Panel();
+            this.lblBellBadge = new Label();
             this.panelSidebar.SuspendLayout();
             this.panelHeader.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.picUserAvatar)).BeginInit();
@@ -59,40 +63,92 @@
             this.MinimumSize = new Size(1200, 700);
 
             // Header Panel - EXACT blue color from image
-            this.panelHeader.BackColor = Color.FromArgb(37, 99, 235);
+            this.panelHeader.BackColor = Color.FromArgb(0, 74, 173);
             this.panelHeader.Dock = DockStyle.Top;
             this.panelHeader.Height = 80;
             this.panelHeader.Controls.Add(this.picBellIcon);
-            this.panelHeader.Controls.Add(this.picUserAvatar);
+            this.panelHeader.Controls.Add(this.lblBellBadge);
+            this.panelHeader.Controls.Add(this.panelUserCircle);
             this.panelHeader.Controls.Add(this.lblUserName);
             this.panelHeader.Controls.Add(this.picLogo);
 
-            // Bell Icon - EXACT position from image
+            // Bell Icon - position and size matching screenshot
             this.picBellIcon.BackColor = Color.Transparent;
-            this.picBellIcon.Location = new Point(30, 20);
-            this.picBellIcon.Size = new Size(40, 40);
-            this.picBellIcon.SizeMode = PictureBoxSizeMode.CenterImage;
+            this.picBellIcon.Location = new Point(18, 16);
+            this.picBellIcon.Size = new Size(32, 32);
+            this.picBellIcon.SizeMode = PictureBoxSizeMode.Zoom;
+            // Load bell icon from Images folder
+            try {
+                this.picBellIcon.Image = sti_student_patient_information_system.Properties.Resources.bell;
+            } catch { /* swallow - designer should still load */ }
+
+            // Bell badge (red circle with count)
+            this.lblBellBadge.BackColor = Color.FromArgb(239, 68, 68);
+            this.lblBellBadge.ForeColor = Color.White;
+            this.lblBellBadge.Font = new Font("Segoe UI", 8F, FontStyle.Bold);
+            this.lblBellBadge.Text = "1";
+            this.lblBellBadge.TextAlign = ContentAlignment.MiddleCenter;
+            this.lblBellBadge.Size = new Size(16, 16);
+            // position on top-right of bell icon
+            this.lblBellBadge.Location = new Point(this.picBellIcon.Location.X + 22, this.picBellIcon.Location.Y + 4);
+            // make circular
+            try {
+                var _gpBadge = new System.Drawing.Drawing2D.GraphicsPath();
+                _gpBadge.AddEllipse(0, 0, this.lblBellBadge.Width, this.lblBellBadge.Height);
+                this.lblBellBadge.Region = new Region(_gpBadge);
+            } catch { }
 
             // User Avatar - EXACT position from image
-            this.picUserAvatar.BackColor = Color.White;
-            this.picUserAvatar.Location = new Point(90, 15);
-            this.picUserAvatar.Size = new Size(50, 50);
-            this.picUserAvatar.SizeMode = PictureBoxSizeMode.StretchImage;
+            // User avatar will be placed inside a circular white panel to create a bordered circular avatar
+            this.panelUserCircle.BackColor = Color.White;
+            this.panelUserCircle.Location = new Point(54, 12);
+            this.panelUserCircle.Size = new Size(44, 44);
+            // make panel circular
+            try {
+                var _gpPanel = new System.Drawing.Drawing2D.GraphicsPath();
+                _gpPanel.AddEllipse(0, 0, this.panelUserCircle.Width, this.panelUserCircle.Height);
+                this.panelUserCircle.Region = new Region(_gpPanel);
+            } catch { }
+
+            this.picUserAvatar.BackColor = Color.Transparent;
+            this.picUserAvatar.Location = new Point(2, 2); // inside panel
+            this.picUserAvatar.Size = new Size(40, 40);
+            this.picUserAvatar.SizeMode = PictureBoxSizeMode.Zoom;
+            // make avatar itself circular
+            try {
+                var _gpAvatar = new System.Drawing.Drawing2D.GraphicsPath();
+                _gpAvatar.AddEllipse(0, 0, this.picUserAvatar.Width, this.picUserAvatar.Height);
+                this.picUserAvatar.Region = new Region(_gpAvatar);
+            } catch { }
+            // Load user avatar from resources
+            try {
+                this.picUserAvatar.Image = sti_student_patient_information_system.Properties.Resources.user;
+            } catch { /* swallow - designer should still load */ }
+
+            // add avatar into circular panel
+            this.panelUserCircle.Controls.Add(this.picUserAvatar);
 
             // User Name Label - EXACT position and font from image
             this.lblUserName.AutoSize = true;
             this.lblUserName.Font = new Font("Segoe UI", 16F, FontStyle.Regular);
             this.lblUserName.ForeColor = Color.White;
-            this.lblUserName.Location = new Point(160, 30);
+            this.lblUserName.Location = new Point(112, 26);
             this.lblUserName.Text = "User's Name";
 
             // Header Logo - EXACT position from image
             this.picLogo.Location = new Point(1180, 10);
             this.picLogo.Size = new Size(200, 60);
-            this.picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            this.picLogo.Anchor = AnchorStyles.Top | AnchorStyles.Right;
+            // maintain aspect ratio and look good when header expands
+            this.picLogo.SizeMode = PictureBoxSizeMode.Zoom;
+            try {
+                this.picLogo.Image = sti_student_patient_information_system.Properties.Resources.logo;
+            } catch { }
+
+            // removed small std image per request
 
             // Sidebar Panel - EXACT blue and width from image
-            this.panelSidebar.BackColor = Color.FromArgb(37, 99, 235);
+            this.panelSidebar.BackColor = Color.FromArgb(0, 74, 173);
             this.panelSidebar.Dock = DockStyle.Right;
             this.panelSidebar.Width = 280;
             this.panelSidebar.Controls.Add(this.btnLogout);

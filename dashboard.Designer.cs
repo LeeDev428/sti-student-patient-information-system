@@ -25,6 +25,11 @@ namespace sti_student_patient_information_system
         private Button btnNextMonth;
         private Panel panelCalendarGrid;
 
+        // New containers for responsive layout
+        private TableLayoutPanel rootLayout;
+    private TableLayoutPanel rightColumn;
+        private TableLayoutPanel statsRow;
+
         protected override void Dispose(bool disposing)
         {
             if (disposing && (components != null))
@@ -36,214 +41,358 @@ namespace sti_student_patient_information_system
 
         private void InitializeComponent()
         {
-            this.lblWelcome = new Label();
-            this.panelSearchContainer = new Panel();
-            this.txtSearch = new TextBox();
-            this.btnSearch = new Button();
-            this.panelCalendar = new Panel();
-            this.panelChart = new Panel();
-            this.lblTodayPatients = new Label();
-            this.lblMonthlyPatients = new Label();
-            this.lblTodayCount = new Label();
-            this.lblMonthlyCount = new Label();
-            this.panelModernCalendar = new Panel();
-            this.lstEvents = new ListBox();
-            this.lblCalendarTitle = new Label();
-            this.panelTodayStats = new Panel();
-            this.panelMonthlyStats = new Panel();
-            this.lblCalendarMonth = new Label();
-            this.btnPrevMonth = new Button();
-            this.btnNextMonth = new Button();
-            this.panelCalendarGrid = new Panel();
-            this.panelSearchContainer.SuspendLayout();
-            this.panelCalendar.SuspendLayout();
-            this.panelModernCalendar.SuspendLayout();
-            this.panelTodayStats.SuspendLayout();
-            this.panelMonthlyStats.SuspendLayout();
-            this.SuspendLayout();
-
-            // Welcome Label - MOVED BACK and repositioned
-            this.lblWelcome.AutoSize = true;
-            this.lblWelcome.Font = new Font("Segoe UI", 32F, FontStyle.Bold);
-            this.lblWelcome.ForeColor = Color.Black;
-            this.lblWelcome.Location = new Point(80, 20);
-            this.lblWelcome.Text = "Welcome back, System Administrator!";
-
-            // Search Container Panel - REPOSITIONED higher
-            this.panelSearchContainer.BackColor = Color.FromArgb(252, 211, 77);
-            this.panelSearchContainer.Location = new Point(80, 80);
-            this.panelSearchContainer.Size = new Size(520, 50);
-            this.panelSearchContainer.Controls.Add(this.txtSearch);
-            this.panelSearchContainer.Controls.Add(this.btnSearch);
-
-            // Search TextBox - Better positioning
-            this.txtSearch.Font = new Font("Segoe UI", 14F, FontStyle.Regular);
-            this.txtSearch.Location = new Point(15, 12);
-            this.txtSearch.Size = new Size(450, 26);
-            this.txtSearch.Text = "Search ID Number, LastName, GivenName";
-            this.txtSearch.ForeColor = Color.FromArgb(107, 114, 128);
-            this.txtSearch.BackColor = Color.FromArgb(252, 211, 77);
-            this.txtSearch.BorderStyle = BorderStyle.None;
-            this.txtSearch.Enter += new EventHandler(this.txtSearch_Enter);
-            this.txtSearch.Leave += new EventHandler(this.txtSearch_Leave);
-
-            // Search Button - Fixed positioning
-            this.btnSearch.BackColor = Color.Transparent;
-            this.btnSearch.FlatStyle = FlatStyle.Flat;
-            this.btnSearch.FlatAppearance.BorderSize = 0;
-            this.btnSearch.Font = new Font("Segoe UI", 16F);
-            this.btnSearch.ForeColor = Color.Black;
-            this.btnSearch.Location = new Point(470, 10);
-            this.btnSearch.Size = new Size(30, 30);
-            this.btnSearch.Text = "🔍";
-            this.btnSearch.UseVisualStyleBackColor = false;
-
-            // Calendar Panel - MODERN DESIGN
-            this.panelCalendar.BackColor = Color.FromArgb(156, 163, 175);
-            this.panelCalendar.Location = new Point(50, 160);
-            this.panelCalendar.Size = new Size(350, 500);
-            this.panelCalendar.Controls.Add(this.lblCalendarTitle);
-            this.panelCalendar.Controls.Add(this.panelModernCalendar);
-            this.panelCalendar.Controls.Add(this.lstEvents);
-
-            // Calendar Title
-            this.lblCalendarTitle.AutoSize = true;
-            this.lblCalendarTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
-            this.lblCalendarTitle.ForeColor = Color.Black;
-            this.lblCalendarTitle.Location = new Point(20, 20);
-            this.lblCalendarTitle.Text = "📅 Calendar";
-
-            // MODERN CALENDAR PANEL
-            this.panelModernCalendar.BackColor = Color.White;
-            this.panelModernCalendar.Location = new Point(20, 60);
-            this.panelModernCalendar.Size = new Size(310, 180);
-            this.panelModernCalendar.Controls.Add(this.btnPrevMonth);
-            this.panelModernCalendar.Controls.Add(this.lblCalendarMonth);
-            this.panelModernCalendar.Controls.Add(this.btnNextMonth);
-            this.panelModernCalendar.Controls.Add(this.panelCalendarGrid);
-
-            // Previous Month Button
-            this.btnPrevMonth.BackColor = Color.Transparent;
-            this.btnPrevMonth.FlatStyle = FlatStyle.Flat;
-            this.btnPrevMonth.FlatAppearance.BorderSize = 0;
-            this.btnPrevMonth.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            this.btnPrevMonth.ForeColor = Color.FromArgb(107, 114, 128);
-            this.btnPrevMonth.Location = new Point(10, 10);
-            this.btnPrevMonth.Size = new Size(30, 30);
-            this.btnPrevMonth.Text = "<";
-            this.btnPrevMonth.UseVisualStyleBackColor = false;
-
-            // Calendar Month Label
-            this.lblCalendarMonth.AutoSize = true;
-            this.lblCalendarMonth.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            this.lblCalendarMonth.ForeColor = Color.Black;
-            this.lblCalendarMonth.Location = new Point(115, 15);
-            this.lblCalendarMonth.Text = "AUGUST 2025";
-
-            // Next Month Button
-            this.btnNextMonth.BackColor = Color.Transparent;
-            this.btnNextMonth.FlatStyle = FlatStyle.Flat;
-            this.btnNextMonth.FlatAppearance.BorderSize = 0;
-            this.btnNextMonth.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            this.btnNextMonth.ForeColor = Color.FromArgb(107, 114, 128);
-            this.btnNextMonth.Location = new Point(270, 10);
-            this.btnNextMonth.Size = new Size(30, 30);
-            this.btnNextMonth.Text = ">";
-            this.btnNextMonth.UseVisualStyleBackColor = false;
-
-            // Calendar Grid Panel
-            this.panelCalendarGrid.BackColor = Color.White;
-            this.panelCalendarGrid.Location = new Point(10, 50);
-            this.panelCalendarGrid.Size = new Size(290, 120);
-            this.panelCalendarGrid.Paint += new PaintEventHandler(this.panelCalendarGrid_Paint);
-
-            // Events List - Modern styling
-            this.lstEvents.Location = new Point(20, 260);
-            this.lstEvents.Size = new Size(310, 220);
-            this.lstEvents.BackColor = Color.White;
-            this.lstEvents.BorderStyle = BorderStyle.None;
-            this.lstEvents.Font = new Font("Segoe UI", 11F);
-            this.lstEvents.Items.Add("📅 Today: 8/29/2025");
-            this.lstEvents.Items.Add("");
-            this.lstEvents.Items.Add("🟡 10:30 - 11:00am");
-            this.lstEvents.Items.Add("   Seminar");
-            this.lstEvents.Items.Add("");
-            this.lstEvents.Items.Add("🟡 12:30 - 1:00pm");
-            this.lstEvents.Items.Add("   Blood Donation Drive");
-
-            // Today's Patient Stats Panel
-            this.panelTodayStats.BackColor = Color.FromArgb(209, 213, 219);
-            this.panelTodayStats.Location = new Point(440, 160);
-            this.panelTodayStats.Size = new Size(240, 120);
-            this.panelTodayStats.Controls.Add(this.lblTodayPatients);
-            this.panelTodayStats.Controls.Add(this.lblTodayCount);
-
-            // Today's Patient Label
-            this.lblTodayPatients.AutoSize = true;
-            this.lblTodayPatients.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            this.lblTodayPatients.ForeColor = Color.Black;
-            this.lblTodayPatients.Location = new Point(20, 20);
-            this.lblTodayPatients.Text = "Today's Patient";
-
-            // Today's Count
-            this.lblTodayCount.AutoSize = true;
-            this.lblTodayCount.Font = new Font("Segoe UI", 48F, FontStyle.Bold);
-            this.lblTodayCount.ForeColor = Color.FromArgb(37, 99, 235);
-            this.lblTodayCount.Location = new Point(80, 45);
-            this.lblTodayCount.Text = "4";
-
-            // Monthly Patient Stats Panel
-            this.panelMonthlyStats.BackColor = Color.FromArgb(209, 213, 219);
-            this.panelMonthlyStats.Location = new Point(720, 160);
-            this.panelMonthlyStats.Size = new Size(240, 120);
-            this.panelMonthlyStats.Controls.Add(this.lblMonthlyPatients);
-            this.panelMonthlyStats.Controls.Add(this.lblMonthlyCount);
-
-            // Monthly Patient Label
-            this.lblMonthlyPatients.AutoSize = true;
-            this.lblMonthlyPatients.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
-            this.lblMonthlyPatients.ForeColor = Color.Black;
-            this.lblMonthlyPatients.Location = new Point(20, 20);
-            this.lblMonthlyPatients.Text = "Monthly Patient";
-
-            // Monthly Count
-            this.lblMonthlyCount.AutoSize = true;
-            this.lblMonthlyCount.Font = new Font("Segoe UI", 48F, FontStyle.Bold);
-            this.lblMonthlyCount.ForeColor = Color.FromArgb(37, 99, 235);
-            this.lblMonthlyCount.Location = new Point(80, 45);
-            this.lblMonthlyCount.Text = "4";
-
-            // Chart Panel
-            this.panelChart.BackColor = Color.White;
-            this.panelChart.Location = new Point(440, 310);
-            this.panelChart.Size = new Size(520, 350);
-            this.panelChart.Paint += new PaintEventHandler(this.panelChart_Paint);
-
-            // ADD CONTROLS TO THE USERCONTROL (NOT panelMain)
-            this.Controls.Add(this.lblWelcome);
-            this.Controls.Add(this.panelSearchContainer);
-            this.Controls.Add(this.panelCalendar);
-            this.Controls.Add(this.panelTodayStats);
-            this.Controls.Add(this.panelMonthlyStats);
-            this.Controls.Add(this.panelChart);
-
-            // UserControl properties
-            this.AutoScaleDimensions = new SizeF(7F, 15F);
-            this.AutoScaleMode = AutoScaleMode.Font;
-            this.BackColor = Color.FromArgb(240, 245, 251);
-            this.Size = new Size(1000, 700);
-
-            this.panelSearchContainer.ResumeLayout(false);
-            this.panelSearchContainer.PerformLayout();
-            this.panelCalendar.ResumeLayout(false);
-            this.panelCalendar.PerformLayout();
-            this.panelModernCalendar.ResumeLayout(false);
-            this.panelModernCalendar.PerformLayout();
-            this.panelTodayStats.ResumeLayout(false);
-            this.panelTodayStats.PerformLayout();
-            this.panelMonthlyStats.ResumeLayout(false);
-            this.panelMonthlyStats.PerformLayout();
-            this.ResumeLayout(false);
+            lblWelcome = new Label();
+            panelSearchContainer = new Panel();
+            txtSearch = new TextBox();
+            btnSearch = new Button();
+            rightColumn = new TableLayoutPanel();
+            panelChart = new Panel();
+            statsRow = new TableLayoutPanel();
+            panelTodayStats = new Panel();
+            lblTodayPatients = new Label();
+            lblTodayCount = new Label();
+            panelMonthlyStats = new Panel();
+            lblMonthlyPatients = new Label();
+            lblMonthlyCount = new Label();
+            panelCalendar = new Panel();
+            lblCalendarTitle = new Label();
+            panelModernCalendar = new Panel();
+            btnPrevMonth = new Button();
+            lblCalendarMonth = new Label();
+            btnNextMonth = new Button();
+            panelCalendarGrid = new Panel();
+            lstEvents = new ListBox();
+            rootLayout = new TableLayoutPanel();
+            panelSearchContainer.SuspendLayout();
+            rightColumn.SuspendLayout();
+            statsRow.SuspendLayout();
+            panelTodayStats.SuspendLayout();
+            panelMonthlyStats.SuspendLayout();
+            panelCalendar.SuspendLayout();
+            panelModernCalendar.SuspendLayout();
+            rootLayout.SuspendLayout();
+            SuspendLayout();
+            // 
+            // lblWelcome
+            // 
+            lblWelcome.AutoSize = true;
+            lblWelcome.Dock = DockStyle.Top;
+            lblWelcome.Font = new Font("Segoe UI", 28F, FontStyle.Bold);
+            lblWelcome.ForeColor = Color.Black;
+            lblWelcome.Location = new Point(0, 0);
+            lblWelcome.Name = "lblWelcome";
+            lblWelcome.Size = new Size(868, 62);
+            lblWelcome.TabIndex = 3;
+            lblWelcome.Text = "Welcome back, System Administrator!";
+            // reduce bottom gap below welcome
+            lblWelcome.Margin = new Padding(0, 0, 0, 8);
+            // 
+            // panelSearchContainer
+            // 
+            panelSearchContainer.BackColor = Color.FromArgb(255, 243, 196);
+            panelSearchContainer.Controls.Add(txtSearch);
+            panelSearchContainer.Controls.Add(btnSearch);
+            panelSearchContainer.Dock = DockStyle.Top;
+            panelSearchContainer.Location = new Point(0, 62);
+            panelSearchContainer.Name = "panelSearchContainer";
+            // pill-like padding (slightly reduced vertical padding)
+            panelSearchContainer.Padding = new Padding(14, 10, 10, 10);
+            panelSearchContainer.Size = new Size(880, 48);
+            panelSearchContainer.TabIndex = 2;
+            // 
+            // txtSearch
+            // 
+            txtSearch.Dock = DockStyle.Fill;
+            txtSearch.BackColor = Color.FromArgb(255, 243, 196);
+            txtSearch.BorderStyle = BorderStyle.None;
+            txtSearch.Font = new Font("Segoe UI", 14F);
+            txtSearch.ForeColor = Color.FromArgb(107, 114, 128);
+            txtSearch.Margin = new Padding(6, 6, 6, 6);
+            txtSearch.Name = "txtSearch";
+            // size will be controlled by docking
+            txtSearch.TabIndex = 0;
+            txtSearch.Text = "Search ID Number, LastName, GivenName";
+            txtSearch.Enter += txtSearch_Enter;
+            txtSearch.Leave += txtSearch_Leave;
+            // 
+            // btnSearch
+            // 
+            btnSearch.Dock = DockStyle.Right;
+            btnSearch.BackColor = Color.White;
+            btnSearch.FlatAppearance.BorderSize = 0;
+            btnSearch.FlatStyle = FlatStyle.Flat;
+            btnSearch.Font = new Font("Segoe UI", 14F);
+            btnSearch.ForeColor = Color.Black;
+            btnSearch.Name = "btnSearch";
+            btnSearch.Size = new Size(48, 36);
+            btnSearch.TabIndex = 1;
+            btnSearch.Text = "🔍";
+            btnSearch.UseVisualStyleBackColor = true;
+            // 
+            // rightColumn as a TableLayoutPanel with explicit rows: Welcome, Search, Stats, Chart
+            rightColumn.ColumnCount = 1;
+            rightColumn.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            rightColumn.RowCount = 4;
+            // Welcome (Auto), Search (Auto), Stats (Absolute), Chart (Percent fill)
+            rightColumn.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            rightColumn.RowStyles.Add(new RowStyle(SizeType.AutoSize));
+            // keep stats row consistent and slightly smaller for balance
+            rightColumn.RowStyles.Add(new RowStyle(SizeType.Absolute, 180F));
+            rightColumn.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            // add controls into specific rows so layout is deterministic
+            rightColumn.Controls.Add(lblWelcome, 0, 0);
+            rightColumn.Controls.Add(panelSearchContainer, 0, 1);
+            rightColumn.Controls.Add(statsRow, 0, 2);
+            rightColumn.Controls.Add(panelChart, 0, 3);
+            rightColumn.Dock = DockStyle.Fill;
+            rightColumn.Location = new Point(447, 27);
+            rightColumn.Name = "rightColumn";
+            rightColumn.Size = new Size(880, 879);
+            rightColumn.TabIndex = 1;
+            // 
+            // panelChart
+            // 
+            panelChart.BackColor = Color.White;
+            panelChart.Dock = DockStyle.Fill;
+            panelChart.Location = new Point(0, 290);
+            // moderate top margin; painting also has internal padding
+            panelChart.Margin = new Padding(0, 8, 0, 12);
+            panelChart.Name = "panelChart";
+            panelChart.Size = new Size(880, 600);
+            panelChart.TabIndex = 0;
+            panelChart.Paint += panelChart_Paint;
+            // 
+            // statsRow
+            // 
+            statsRow.ColumnCount = 2;
+            statsRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            statsRow.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 50F));
+            statsRow.Controls.Add(panelTodayStats, 0, 0);
+            statsRow.Controls.Add(panelMonthlyStats, 1, 0);
+            statsRow.Dock = DockStyle.Top;
+            statsRow.Location = new Point(0, 118);
+            statsRow.Name = "statsRow";
+            statsRow.Padding = new Padding(0, 10, 0, 10);
+            statsRow.RowCount = 1;
+            // single-row layout inside the statsRow -- the container row in rightColumn controls height
+            statsRow.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            statsRow.Size = new Size(880, 180);
+            statsRow.TabIndex = 1;
+            // 
+            // panelTodayStats
+            // 
+            panelTodayStats.BackColor = Color.FromArgb(237, 239, 241);
+            // add count first then header so header (Dock=Top) remains visible on top
+            panelTodayStats.Controls.Add(lblTodayCount);
+            panelTodayStats.Controls.Add(lblTodayPatients);
+            panelTodayStats.Dock = DockStyle.Fill;
+            panelTodayStats.Location = new Point(0, 12);
+            // reduce horizontal gap between cards
+            panelTodayStats.Margin = new Padding(0, 0, 8, 0);
+            panelTodayStats.Name = "panelTodayStats";
+            // card-like padding and rounded corners will be applied at runtime
+            panelTodayStats.Padding = new Padding(20, 14, 20, 14);
+            panelTodayStats.Size = new Size(440, 160);
+            panelTodayStats.TabIndex = 0;
+            // 
+            // lblTodayPatients
+            // 
+            lblTodayPatients.AutoSize = false;
+            lblTodayPatients.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblTodayPatients.ForeColor = Color.FromArgb(34, 34, 34);
+            lblTodayPatients.Name = "lblTodayPatients";
+            lblTodayPatients.TabIndex = 0;
+            lblTodayPatients.Text = "Today's Patient";
+            lblTodayPatients.Dock = DockStyle.Top;
+            lblTodayPatients.Padding = new Padding(12, 8, 12, 6);
+            // 
+            // lblTodayCount
+            // 
+            lblTodayCount.AutoSize = false;
+            lblTodayCount.Font = new Font("Segoe UI", 40F, FontStyle.Bold);
+            lblTodayCount.ForeColor = Color.FromArgb(37, 99, 235);
+            lblTodayCount.Name = "lblTodayCount";
+            lblTodayCount.TabIndex = 1;
+            lblTodayCount.Text = "4";
+            lblTodayCount.Dock = DockStyle.Fill;
+            lblTodayCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelMonthlyStats
+            // 
+            panelMonthlyStats.BackColor = Color.FromArgb(237, 239, 241);
+            // add count first then header so header (Dock=Top) remains visible on top
+            panelMonthlyStats.Controls.Add(lblMonthlyCount);
+            panelMonthlyStats.Controls.Add(lblMonthlyPatients);
+            panelMonthlyStats.Location = new Point(448, 12);
+            // reduce horizontal gap between cards
+            panelMonthlyStats.Margin = new Padding(8, 0, 0, 0);
+            panelMonthlyStats.Name = "panelMonthlyStats";
+            panelMonthlyStats.Padding = new Padding(20, 14, 20, 14);
+            panelMonthlyStats.Size = new Size(440, 160);
+            panelMonthlyStats.TabIndex = 1;
+            panelMonthlyStats.Paint += panelMonthlyStats_Paint;
+            // 
+            // lblMonthlyPatients
+            // 
+            lblMonthlyPatients.AutoSize = false;
+            lblMonthlyPatients.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblMonthlyPatients.ForeColor = Color.FromArgb(34, 34, 34);
+            lblMonthlyPatients.Name = "lblMonthlyPatients";
+            lblMonthlyPatients.TabIndex = 0;
+            lblMonthlyPatients.Text = "Monthly Patient";
+            lblMonthlyPatients.Dock = DockStyle.Top;
+            lblMonthlyPatients.Padding = new Padding(12, 8, 12, 6);
+            // 
+            // lblMonthlyCount
+            // 
+            lblMonthlyCount.AutoSize = false;
+            lblMonthlyCount.Font = new Font("Segoe UI", 40F, FontStyle.Bold);
+            lblMonthlyCount.ForeColor = Color.FromArgb(37, 99, 235);
+            lblMonthlyCount.Name = "lblMonthlyCount";
+            lblMonthlyCount.TabIndex = 1;
+            lblMonthlyCount.Text = "4";
+            lblMonthlyCount.Dock = DockStyle.Fill;
+            lblMonthlyCount.TextAlign = ContentAlignment.MiddleCenter;
+            // 
+            // panelCalendar
+            // 
+            panelCalendar.BackColor = Color.FromArgb(156, 163, 175);
+            panelCalendar.Controls.Add(lblCalendarTitle);
+            panelCalendar.Controls.Add(panelModernCalendar);
+            panelCalendar.Controls.Add(lstEvents);
+            panelCalendar.Dock = DockStyle.Fill;
+            panelCalendar.Location = new Point(27, 27);
+            panelCalendar.Name = "panelCalendar";
+            panelCalendar.Padding = new Padding(16);
+            panelCalendar.Size = new Size(414, 879);
+            panelCalendar.TabIndex = 0;
+            // 
+            // lblCalendarTitle
+            // 
+            lblCalendarTitle.AutoSize = true;
+            lblCalendarTitle.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblCalendarTitle.ForeColor = Color.Black;
+            lblCalendarTitle.Location = new Point(20, 20);
+            lblCalendarTitle.Name = "lblCalendarTitle";
+            lblCalendarTitle.Size = new Size(176, 37);
+            lblCalendarTitle.TabIndex = 0;
+            lblCalendarTitle.Text = "📅 Calendar";
+            // 
+            // panelModernCalendar
+            // 
+            panelModernCalendar.Anchor = AnchorStyles.Top | AnchorStyles.Left | AnchorStyles.Right;
+            panelModernCalendar.BackColor = Color.White;
+            panelModernCalendar.Controls.Add(btnPrevMonth);
+            panelModernCalendar.Controls.Add(lblCalendarMonth);
+            panelModernCalendar.Controls.Add(btnNextMonth);
+            panelModernCalendar.Controls.Add(panelCalendarGrid);
+            panelModernCalendar.Location = new Point(20, 60);
+            panelModernCalendar.Name = "panelModernCalendar";
+            panelModernCalendar.Size = new Size(634, 200);
+            panelModernCalendar.TabIndex = 1;
+            // 
+            // btnPrevMonth
+            // 
+            btnPrevMonth.BackColor = Color.Transparent;
+            btnPrevMonth.FlatAppearance.BorderSize = 0;
+            btnPrevMonth.FlatStyle = FlatStyle.Flat;
+            btnPrevMonth.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnPrevMonth.ForeColor = Color.FromArgb(107, 114, 128);
+            btnPrevMonth.Location = new Point(11, 13);
+            btnPrevMonth.Name = "btnPrevMonth";
+            btnPrevMonth.Size = new Size(34, 40);
+            btnPrevMonth.TabIndex = 0;
+            btnPrevMonth.Text = "<";
+            btnPrevMonth.UseVisualStyleBackColor = false;
+            // 
+            // lblCalendarMonth
+            // 
+            lblCalendarMonth.AutoSize = true;
+            lblCalendarMonth.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            lblCalendarMonth.ForeColor = Color.Black;
+            lblCalendarMonth.Location = new Point(120, 20);
+            lblCalendarMonth.Name = "lblCalendarMonth";
+            lblCalendarMonth.Size = new Size(172, 32);
+            lblCalendarMonth.TabIndex = 1;
+            lblCalendarMonth.Text = "AUGUST 2025";
+            // 
+            // btnNextMonth
+            // 
+            btnNextMonth.BackColor = Color.Transparent;
+            btnNextMonth.FlatAppearance.BorderSize = 0;
+            btnNextMonth.FlatStyle = FlatStyle.Flat;
+            btnNextMonth.Font = new Font("Segoe UI", 14F, FontStyle.Bold);
+            btnNextMonth.ForeColor = Color.FromArgb(107, 114, 128);
+            btnNextMonth.Location = new Point(420, 13);
+            btnNextMonth.Name = "btnNextMonth";
+            btnNextMonth.Size = new Size(34, 40);
+            btnNextMonth.TabIndex = 2;
+            btnNextMonth.Text = ">";
+            btnNextMonth.UseVisualStyleBackColor = false;
+            // 
+            // panelCalendarGrid
+            // 
+            panelCalendarGrid.BackColor = Color.White;
+            panelCalendarGrid.Location = new Point(11, 67);
+            panelCalendarGrid.Name = "panelCalendarGrid";
+            panelCalendarGrid.Size = new Size(420, 130);
+            panelCalendarGrid.TabIndex = 3;
+            panelCalendarGrid.Paint += panelCalendarGrid_Paint;
+            // 
+            // lstEvents
+            // 
+            lstEvents.BackColor = Color.White;
+            lstEvents.BorderStyle = BorderStyle.None;
+            lstEvents.Font = new Font("Segoe UI", 11F);
+            lstEvents.ItemHeight = 25;
+            lstEvents.Items.AddRange(new object[] { "📅 Today: 8/29/2025", "", "\U0001f7e1 10:30 - 11:00am", "   Seminar", "", "\U0001f7e1 12:30 - 1:00pm", "   Blood Donation Drive" });
+            lstEvents.Location = new Point(20, 280);
+            lstEvents.Name = "lstEvents";
+            lstEvents.Size = new Size(420, 325);
+            lstEvents.TabIndex = 2;
+            // 
+            // rootLayout
+            // 
+            rootLayout.BackColor = Color.Transparent;
+            rootLayout.ColumnCount = 2;
+            rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Absolute, 420F));
+            rootLayout.ColumnStyles.Add(new ColumnStyle(SizeType.Percent, 100F));
+            rootLayout.Controls.Add(panelCalendar, 0, 0);
+            rootLayout.Controls.Add(rightColumn, 1, 0);
+            rootLayout.Dock = DockStyle.Fill;
+            rootLayout.Location = new Point(0, 0);
+            rootLayout.Name = "rootLayout";
+            rootLayout.Padding = new Padding(24);
+            rootLayout.RowCount = 1;
+            rootLayout.RowStyles.Add(new RowStyle(SizeType.Percent, 100F));
+            rootLayout.Size = new Size(1354, 933);
+            rootLayout.TabIndex = 0;
+            rootLayout.Paint += rootLayout_Paint;
+            // 
+            // dashboard
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(240, 245, 251);
+            Controls.Add(rootLayout);
+            DoubleBuffered = true;
+            Name = "dashboard";
+            Size = new Size(1354, 933);
+            panelSearchContainer.ResumeLayout(false);
+            panelSearchContainer.PerformLayout();
+            rightColumn.ResumeLayout(false);
+            rightColumn.PerformLayout();
+            statsRow.ResumeLayout(false);
+            panelTodayStats.ResumeLayout(false);
+            panelTodayStats.PerformLayout();
+            panelMonthlyStats.ResumeLayout(false);
+            panelMonthlyStats.PerformLayout();
+            panelCalendar.ResumeLayout(false);
+            panelCalendar.PerformLayout();
+            panelModernCalendar.ResumeLayout(false);
+            panelModernCalendar.PerformLayout();
+            rootLayout.ResumeLayout(false);
+            ResumeLayout(false);
         }
 
         // Search placeholder functionality
@@ -277,7 +426,7 @@ namespace sti_student_patient_information_system
 
             for (int i = 0; i < 7; i++)
             {
-                int x = 5 + (i * 40);
+                int x = 5 + (i * 44);
                 g.DrawString(dayHeaders[i], headerFont, Brushes.Gray, x + 15, 5);
             }
 
@@ -297,8 +446,8 @@ namespace sti_student_patient_information_system
             {
                 for (int col = 0; col < 7; col++)
                 {
-                    int x = 5 + (col * 40);
-                    int y = 25 + (row * 15);
+                    int x = 5 + (col * 44);
+                    int y = 25 + (row * 18);
 
                     string day = calendar[row, col];
                     Brush textBrush = Brushes.Black;
@@ -306,7 +455,7 @@ namespace sti_student_patient_information_system
                     // Highlight today (29th)
                     if (day == "29" && row == 0)
                     {
-                        g.FillRectangle(Brushes.Blue, x + 10, y - 2, 20, 16);
+                        g.FillRectangle(Brushes.Blue, x + 10, y - 2, 22, 18);
                         textBrush = Brushes.White;
                     }
                     // Gray out previous/next month days

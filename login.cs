@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Drawing;
 using System.Drawing.Drawing2D;
 using System.IO;
@@ -23,8 +23,8 @@ namespace sti_student_patient_information_system
             {
                 // Multiple possible paths for the logo
                 string[] possiblePaths = {
-                    Path.Combine(Application.StartupPath, "sti-logo.png"),
-                    Path.Combine(Application.StartupPath, "Images", "sti-logo.png"),
+                    Path.Combine(Application.StartupPath, "std.png"),
+                    Path.Combine(Application.StartupPath, "Images", "std.png"),
                     Path.Combine(Application.StartupPath, "Resources", "sti-logo.png"),
                     Path.Combine(Directory.GetParent(Application.StartupPath).Parent.Parent.FullName, "sti-logo.png"),
                     Path.Combine(Directory.GetParent(Application.StartupPath).Parent.Parent.FullName, "Images", "sti-logo.png")
@@ -138,6 +138,41 @@ namespace sti_student_patient_information_system
                 btnLogin_Click(this, EventArgs.Empty);
             }
             base.OnKeyDown(e);
+        }
+
+        private void txtEmail_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblTitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void panelMain_Paint(object sender, PaintEventArgs e)
+        {
+
+        }
+
+        private void picLogo_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSubtitle_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSubtitle2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void lblSubtitle3_Click(object sender, EventArgs e)
+        {
+
         }
     }
 }

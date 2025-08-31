@@ -2,6 +2,7 @@
 using System.Data;
 using System.Drawing;
 using System.Drawing.Drawing2D;
+using System.IO;
 using System.Windows.Forms;
 
 namespace sti_student_patient_information_system
@@ -10,6 +11,9 @@ namespace sti_student_patient_information_system
     {
         private string currentUserName;
         private main_layout parentMainLayout;
+    // Icons for DataGridView action buttons
+    private Image editIcon;
+    private Image deleteIcon;
 
         public inventory()
         {
@@ -44,6 +48,8 @@ namespace sti_student_patient_information_system
 
             // DataGridView cell click for buttons
             dgvInventory.CellClick += DgvInventory_CellClick;
+            // Custom paint for button columns so text/icons remain visible on colored background
+            dgvInventory.CellPainting += DgvInventory_CellPainting;
         }
 
         private void DgvInventory_CellClick(object sender, DataGridViewCellEventArgs e)
@@ -59,6 +65,81 @@ namespace sti_student_patient_information_system
                 else if (columnName == "Delete")
                 {
                     DeleteInventoryItem(e.RowIndex);
+                }
+            }
+        }
+
+        private void DgvInventory_CellPainting(object sender, DataGridViewCellPaintingEventArgs e)
+        {
+            // Custom paint Edit/Delete button cells so text and icons remain readable on colored backgrounds
+            if (e.RowIndex >= 0 && e.ColumnIndex >= 0)
+            {
+                var col = dgvInventory.Columns[e.ColumnIndex];
+                if (col.Name == "Edit" || col.Name == "Delete")
+                {
+                    e.Handled = true;
+                    // Paint cell background
+                    e.PaintBackground(e.CellBounds, true);
+
+                    // Choose colors
+                    Color back = col.Name == "Edit" ? Color.FromArgb(34, 197, 94) : Color.FromArgb(239, 68, 68);
+                    string text = col.Name == "Edit" ? "Edit" : "Delete";
+
+                    // Load icons lazily from the app's Images folder (fallback to text if load fails)
+                    if (editIcon == null || deleteIcon == null)
+                    {
+                        try
+                        {
+                            string baseDir = AppDomain.CurrentDomain.BaseDirectory;
+                            string imagesDir = Path.Combine(baseDir, "Images");
+                            string editPath = Path.Combine(imagesDir, "edit.png");
+                            string deletePath = Path.Combine(imagesDir, "recycle-bin.png");
+                            if (File.Exists(editPath)) editIcon = Image.FromFile(editPath);
+                            if (File.Exists(deletePath)) deleteIcon = Image.FromFile(deletePath);
+                        }
+                        catch
+                        {
+                            // ignore and fall back to text
+                        }
+                    }
+
+                    // Draw colored rectangle with small padding
+                    Rectangle rect = new Rectangle(e.CellBounds.X + 6, e.CellBounds.Y + 6, e.CellBounds.Width - 12, e.CellBounds.Height - 12);
+                    using (Brush b = new SolidBrush(back))
+                    {
+                        e.Graphics.FillRectangle(b, rect);
+                    }
+
+                    // Draw icon (if available) then text
+                    Image icon = col.Name == "Edit" ? editIcon : deleteIcon;
+                    int padding = 8;
+                    Rectangle iconRect = Rectangle.Empty;
+                    Rectangle textRect = Rectangle.Empty;
+                    if (icon != null)
+                    {
+                        // scale icon to fit height- padding
+                        int iconSize = Math.Max(16, rect.Height - padding * 2);
+                        iconRect = new Rectangle(rect.X + padding, rect.Y + (rect.Height - iconSize) / 2, iconSize, iconSize);
+                        // text area to the right of icon
+                        textRect = new Rectangle(iconRect.Right + 6, rect.Y, rect.Width - (iconRect.Width + padding + 6), rect.Height);
+                        e.Graphics.InterpolationMode = System.Drawing.Drawing2D.InterpolationMode.HighQualityBicubic;
+                        e.Graphics.DrawImage(icon, iconRect);
+                    }
+                    else
+                    {
+                        // center text if no icon
+                        textRect = rect;
+                    }
+
+                    // Draw text left-aligned in remaining space
+                    TextFormatFlags flags = TextFormatFlags.VerticalCenter | TextFormatFlags.SingleLine | TextFormatFlags.Left;
+                    TextRenderer.DrawText(e.Graphics, text, new Font("Segoe UI", 9F, FontStyle.Bold), textRect, Color.White, flags);
+
+                    // Draw cell border
+                    using (Pen p = new Pen(Color.FromArgb(200, 200, 200)))
+                    {
+                        e.Graphics.DrawRectangle(p, rect);
+                    }
                 }
             }
         }
@@ -151,8 +232,9 @@ namespace sti_student_patient_information_system
             DataGridViewButtonColumn editButtonColumn = new DataGridViewButtonColumn();
             editButtonColumn.Name = "Edit";
             editButtonColumn.HeaderText = "Edit";
-            editButtonColumn.Text = "✏️ Edit";
-            editButtonColumn.UseColumnTextForButtonValue = true;
+            editButtonColumn.Text = "Edit";
+            // We'll custom paint the button cells so don't rely on the default text rendering
+            editButtonColumn.UseColumnTextForButtonValue = false;
             editButtonColumn.Width = 80;
             editButtonColumn.FlatStyle = FlatStyle.Flat;
             dgvInventory.Columns.Add(editButtonColumn);
@@ -161,11 +243,40 @@ namespace sti_student_patient_information_system
             DataGridViewButtonColumn deleteButtonColumn = new DataGridViewButtonColumn();
             deleteButtonColumn.Name = "Delete";
             deleteButtonColumn.HeaderText = "Delete";
-            deleteButtonColumn.Text = "🗑️ Delete";
-            deleteButtonColumn.UseColumnTextForButtonValue = true;
+            deleteButtonColumn.Text = "Delete";
+            deleteButtonColumn.UseColumnTextForButtonValue = false;
             deleteButtonColumn.Width = 90;
             deleteButtonColumn.FlatStyle = FlatStyle.Flat;
             dgvInventory.Columns.Add(deleteButtonColumn);
+
+            // Ensure action columns are placed at the far right and are fixed width so the Item Name column can take remaining space
+            try
+            {
+                // Make sure the Item Name column exists and uses Fill
+                if (dgvInventory.Columns.Contains("Item Name"))
+                {
+                    dgvInventory.Columns["Item Name"].AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
+                    dgvInventory.Columns["Item Name"].FillWeight = 200; // large weight to keep it wide on first open
+                }
+
+                // Place Edit/Delete at the end and make them fixed width
+                if (dgvInventory.Columns.Contains("Edit"))
+                {
+                    dgvInventory.Columns["Edit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dgvInventory.Columns["Edit"].Width = 110;
+                    dgvInventory.Columns["Edit"].DisplayIndex = dgvInventory.Columns.Count - 2;
+                }
+                if (dgvInventory.Columns.Contains("Delete"))
+                {
+                    dgvInventory.Columns["Delete"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dgvInventory.Columns["Delete"].Width = 110;
+                    dgvInventory.Columns["Delete"].DisplayIndex = dgvInventory.Columns.Count - 1;
+                }
+            }
+            catch
+            {
+                // ignore layout exceptions during initial population
+            }
 
             // Style the button columns
             editButtonColumn.DefaultCellStyle.BackColor = Color.FromArgb(59, 130, 246);
@@ -185,13 +296,15 @@ namespace sti_student_patient_information_system
                 if (dgvInventory.Columns.Contains("id"))
                     dgvInventory.Columns["id"].Visible = false;
 
-                // Set column widths
-                dgvInventory.Columns["Item Name"].Width = 200;
-                dgvInventory.Columns["Quantity"].Width = 80;
-                dgvInventory.Columns["Quantity Remaining"].Width = 120;
-                dgvInventory.Columns["Received Date"].Width = 120;
-                dgvInventory.Columns["Expiration Date"].Width = 120;
-                dgvInventory.Columns["Status"].Width = 100;
+                // Make columns fill available width and set reasonable ratios
+                dgvInventory.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
+                // Give columns relative fill weights
+                dgvInventory.Columns["Item Name"].FillWeight = 30; // wider
+                dgvInventory.Columns["Quantity"].FillWeight = 8;
+                dgvInventory.Columns["Quantity Remaining"].FillWeight = 10;
+                dgvInventory.Columns["Received Date"].FillWeight = 12;
+                dgvInventory.Columns["Expiration Date"].FillWeight = 12;
+                dgvInventory.Columns["Status"].FillWeight = 8;
 
                 // Hide optional columns that we don't want to display in the main grid
                 if (dgvInventory.Columns.Contains("supplier"))
@@ -210,6 +323,9 @@ namespace sti_student_patient_information_system
                 dgvInventory.ColumnHeadersDefaultCellStyle.Font = new Font("Segoe UI", 11F, FontStyle.Bold);
                 dgvInventory.ColumnHeadersHeight = 40;
 
+                // Ensure header and cell styles are applied consistently (avoid OS visual styles overriding colors)
+                dgvInventory.EnableHeadersVisualStyles = false;
+
                 // Style rows
                 dgvInventory.DefaultCellStyle.Font = new Font("Segoe UI", 10F);
                 dgvInventory.DefaultCellStyle.SelectionBackColor = Color.FromArgb(252, 211, 77);
@@ -217,6 +333,20 @@ namespace sti_student_patient_information_system
                 dgvInventory.RowsDefaultCellStyle.BackColor = Color.White;
                 dgvInventory.AlternatingRowsDefaultCellStyle.BackColor = Color.FromArgb(248, 250, 252);
                 dgvInventory.RowTemplate.Height = 40;
+
+                // Make sure action columns (Edit/Delete) are narrow and placed at the far right
+                if (dgvInventory.Columns.Contains("Edit"))
+                {
+                    dgvInventory.Columns["Edit"].FillWeight = 6;
+                    dgvInventory.Columns["Edit"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dgvInventory.Columns["Edit"].Width = 90;
+                }
+                if (dgvInventory.Columns.Contains("Delete"))
+                {
+                    dgvInventory.Columns["Delete"].FillWeight = 6;
+                    dgvInventory.Columns["Delete"].AutoSizeMode = DataGridViewAutoSizeColumnMode.None;
+                    dgvInventory.Columns["Delete"].Width = 90;
+                }
 
                 // Style grid
                 dgvInventory.GridColor = Color.FromArgb(229, 231, 235);

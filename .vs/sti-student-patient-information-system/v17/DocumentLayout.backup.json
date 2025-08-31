@@ -1,0 +1,396 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:dashboard.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:dashboard.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\main_layout.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:main_layout.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:login.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:login.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\main_layout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:main_layout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\report.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:report.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:databasehelper.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\inventory.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:inventory.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\settings.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:settings.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:settings.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:inventory.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:report.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\add_patients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:add_patients.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\add_patients.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:add_patients.designer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\main_layout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:main_layout.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}|Form"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|d:\\programming\\systems\\desktop-systems\\csharp-dotnet\\sti-student-patient-information-system\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{ACE5CBF6-5CCE-49FE-B13B-9F6F81383881}|sti-student-patient-information-system.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 12,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{40ea2e6b-2121-4bb8-a43e-c83c04b51041}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "dashboard.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\dashboard.Designer.cs",
+              "RelativeDocumentMoniker": "dashboard.Designer.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\dashboard.Designer.cs*",
+              "RelativeToolTip": "dashboard.Designer.cs*",
+              "ViewState": "AgIAAJ8BAAAAAAAAAAAAALgBAAA4AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:19:29.492Z",
+              "IsPinned": true,
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "dashboard.cs [Design]",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\dashboard.cs",
+              "RelativeDocumentMoniker": "dashboard.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\dashboard.cs [Design]*",
+              "RelativeToolTip": "dashboard.cs [Design]*",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-31T02:41:02.24Z",
+              "EditorCaption": " [Design]"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{34e76e81-ee4a-11d0-ae2e-00a0c90fffc3}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{3ae79031-e1bc-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "settings.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\settings.cs",
+              "RelativeDocumentMoniker": "settings.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\settings.cs",
+              "RelativeToolTip": "settings.cs",
+              "ViewState": "AgIAAIsBAAAAAAAAAAAAAHwBAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:46:06.371Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "inventory.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\inventory.cs",
+              "RelativeDocumentMoniker": "inventory.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\inventory.cs",
+              "RelativeToolTip": "inventory.cs",
+              "ViewState": "AgIAAFkCAAAAAAAAAAAtwGgCAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:40:11.955Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "main_layout.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\main_layout.cs",
+              "RelativeDocumentMoniker": "main_layout.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\main_layout.cs",
+              "RelativeToolTip": "main_layout.cs",
+              "ViewState": "AgIAAHgAAAAAAAAAAAAhwH8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:18:33.313Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "report.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\report.Designer.cs",
+              "RelativeDocumentMoniker": "report.Designer.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\report.Designer.cs",
+              "RelativeToolTip": "report.Designer.cs",
+              "ViewState": "AgIAADMCAAAAAAAAAAAiwDsCAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:13:01.858Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "inventory.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\inventory.Designer.cs",
+              "RelativeDocumentMoniker": "inventory.Designer.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\inventory.Designer.cs",
+              "RelativeToolTip": "inventory.Designer.cs",
+              "ViewState": "AgIAAFcAAAAAAAAAAAAiwGkAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:40:26.584Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "settings.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\settings.Designer.cs",
+              "RelativeDocumentMoniker": "settings.Designer.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\settings.Designer.cs",
+              "RelativeToolTip": "settings.Designer.cs",
+              "ViewState": "AgIAAAEAAAAAAAAAAAAEwBIAAAArAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:47:02.083Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "dashboard.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\dashboard.cs",
+              "RelativeDocumentMoniker": "dashboard.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\dashboard.cs*",
+              "RelativeToolTip": "dashboard.cs*",
+              "ViewState": "AgIAAPkAAAAAAAAAAAAmwA8BAABNAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:20:24.894Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "login.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\login.cs",
+              "RelativeDocumentMoniker": "login.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\login.cs",
+              "RelativeToolTip": "login.cs",
+              "ViewState": "AgIAAJUAAAAAAAAAAAAMwKQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:08:02.313Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "login.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\login.Designer.cs",
+              "RelativeDocumentMoniker": "login.Designer.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\login.Designer.cs",
+              "RelativeToolTip": "login.Designer.cs",
+              "ViewState": "AgIAAJkAAAAAAAAAAAAEwAEBAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:08:14.791Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "report.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\report.cs",
+              "RelativeDocumentMoniker": "report.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\report.cs",
+              "RelativeToolTip": "report.cs",
+              "ViewState": "AgIAAAoAAAAAAAAAAAA1wBQAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:12:51.971Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "DatabaseHelper.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\DatabaseHelper.cs",
+              "RelativeDocumentMoniker": "DatabaseHelper.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\DatabaseHelper.cs",
+              "RelativeToolTip": "DatabaseHelper.cs",
+              "ViewState": "AgIAALcDAAAAAAAAAAAtwMUDAABPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:09:47.771Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "add_patients.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\add_patients.cs",
+              "RelativeDocumentMoniker": "add_patients.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\add_patients.cs",
+              "RelativeToolTip": "add_patients.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAcAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:59:31.27Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "main_layout.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\main_layout.Designer.cs",
+              "RelativeDocumentMoniker": "main_layout.Designer.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\main_layout.Designer.cs",
+              "RelativeToolTip": "main_layout.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:18:50.36Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "add_patients.Designer.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\add_patients.Designer.cs",
+              "RelativeDocumentMoniker": "add_patients.Designer.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\add_patients.Designer.cs",
+              "RelativeToolTip": "add_patients.Designer.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAMAAAAFAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T12:59:21.502Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAkAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T11:29:19.433Z"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{eefa5220-e298-11d0-8f78-00a0c9110057}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "login.cs [Design]",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\login.cs",
+              "RelativeDocumentMoniker": "login.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\login.cs [Design]",
+              "RelativeToolTip": "login.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-30T14:48:05.83Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "settings.cs [Design]",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\settings.cs",
+              "RelativeDocumentMoniker": "settings.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\settings.cs [Design]",
+              "RelativeToolTip": "settings.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:45:32.126Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "report.cs [Design]",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\report.cs",
+              "RelativeDocumentMoniker": "report.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\report.cs [Design]",
+              "RelativeToolTip": "report.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:12:35.678Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "inventory.cs [Design]",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\inventory.cs",
+              "RelativeDocumentMoniker": "inventory.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\inventory.cs [Design]",
+              "RelativeToolTip": "inventory.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T15:11:59.934Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "main_layout.cs [Design]",
+              "DocumentMoniker": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\main_layout.cs",
+              "RelativeDocumentMoniker": "main_layout.cs",
+              "ToolTip": "D:\\Programming\\Systems\\Desktop-Systems\\CSharp-DotNet\\sti-student-patient-information-system\\main_layout.cs [Design]",
+              "RelativeToolTip": "main_layout.cs [Design]",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-08-29T10:57:50.699Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -10,7 +10,7 @@ namespace sti_student_patient_information_system
         private DataGridView dgvInventory;
         private Panel panelInventoryContainer;
         private Button btnExportData;
-        private Button btnEdit;
+    private Button btnEdit;
         private Button btnAddItem; // NEW: Add item button
 
         protected override void Dispose(bool disposing)
@@ -50,6 +50,7 @@ namespace sti_student_patient_information_system
             this.btnAddItem.ForeColor = Color.White;
             this.btnAddItem.Location = new Point(900, 20); // Upper right position
             this.btnAddItem.Size = new Size(50, 50); // Square button
+            this.btnAddItem.Anchor = AnchorStyles.Top | AnchorStyles.Right;
             this.btnAddItem.Text = "+";
             this.btnAddItem.UseVisualStyleBackColor = false;
 
@@ -57,6 +58,8 @@ namespace sti_student_patient_information_system
             this.panelInventoryContainer.BackColor = Color.FromArgb(209, 213, 219);
             this.panelInventoryContainer.Location = new Point(50, 80);
             this.panelInventoryContainer.Size = new Size(900, 450);
+            // Make the container resize with the control
+            this.panelInventoryContainer.Anchor = AnchorStyles.Top | AnchorStyles.Bottom | AnchorStyles.Left | AnchorStyles.Right;
             this.panelInventoryContainer.Controls.Add(this.dgvInventory);
 
             // DataGridView for inventory - exactly like your image
@@ -65,8 +68,8 @@ namespace sti_student_patient_information_system
             this.dgvInventory.BackgroundColor = Color.White;
             this.dgvInventory.BorderStyle = BorderStyle.FixedSingle;
             this.dgvInventory.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dgvInventory.Location = new Point(20, 20);
-            this.dgvInventory.Size = new Size(860, 410);
+            // Let the grid fill the panel so it automatically resizes
+            this.dgvInventory.Dock = DockStyle.Fill;
             this.dgvInventory.ReadOnly = true;
             this.dgvInventory.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             this.dgvInventory.CellBorderStyle = DataGridViewCellBorderStyle.Single;
@@ -78,19 +81,25 @@ namespace sti_student_patient_information_system
             this.btnExportData.FlatAppearance.BorderSize = 0;
             this.btnExportData.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             this.btnExportData.ForeColor = Color.White;
-            this.btnExportData.Location = new Point(650, 550);
+            this.btnExportData.Location = new Point(420, 550);
             this.btnExportData.Size = new Size(120, 40);
+            // Anchor to bottom so it stays at same vertical distance; positioned nearer center
+            this.btnExportData.Anchor = AnchorStyles.Bottom;
             this.btnExportData.Text = "Export Data";
 
             // Edit Button - matches your image
-            this.btnEdit.BackColor = Color.FromArgb(37, 99, 235);
+            // Edit button made green for better visibility
+            this.btnEdit.BackColor = Color.FromArgb(34, 197, 94);
             this.btnEdit.FlatStyle = FlatStyle.Flat;
             this.btnEdit.FlatAppearance.BorderSize = 0;
             this.btnEdit.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
             this.btnEdit.ForeColor = Color.White;
-            this.btnEdit.Location = new Point(800, 550);
+            this.btnEdit.Location = new Point(550, 550);
             this.btnEdit.Size = new Size(100, 40);
+            // Anchor to bottom so it stays aligned with Export when resizing horizontally
+            this.btnEdit.Anchor = AnchorStyles.Bottom;
             this.btnEdit.Text = "Edit";
+
 
             // UserControl properties
             this.AutoScaleDimensions = new SizeF(7F, 15F);

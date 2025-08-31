@@ -34,9 +34,16 @@ D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-informa
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti-student-patient-information-system.pdb
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti-student-patient-information-system.genruntimeconfig.cache
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\ref\sti-student-patient-information-system.dll
-D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\sti-logo.png
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.add_patients.resources
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.inventory.resources
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.report.resources
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.settings.resources
 D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti-student-patient-information-system.sourcelink.json
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\std.png
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\hide.png
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\key.png
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\mail.png
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\view.png
+d:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\obj\Debug\net8.0-windows\sti_student_patient_information_system.Properties.Resources.resources
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\edit.png
+D:\Programming\Systems\Desktop-Systems\CSharp-DotNet\sti-student-patient-information-system\bin\Debug\net8.0-windows\Images\recycle-bin.png

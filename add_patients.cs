@@ -19,6 +19,16 @@ namespace sti_student_patient_information_system
             currentUserName = userName;
             parentMainLayout = mainLayoutRef; // Store reference
             SetupEventHandlers();
+
+            // ensure panels are centered when loaded and when the parent resizes
+            CenterPanels();
+            this.SizeChanged += (s, e) => CenterPanels();
+            if (parentMainLayout != null)
+                parentMainLayout.Resize += (s, e) => CenterPanels();
+
+            // prefer top anchoring so we control horizontal centering programmatically
+            if (panelMain != null) panelMain.Anchor = AnchorStyles.Top;
+            if (panelMedical != null) panelMedical.Anchor = AnchorStyles.Top;
         }
 
         private void SetupEventHandlers()
@@ -34,8 +44,7 @@ namespace sti_student_patient_information_system
                         txtAge.Text = age.ToString();
                 };
             }
-        }
-
+            }
         private void btnSave_Click(object sender, EventArgs e)
         {
             if (!ValidateInput())
@@ -96,6 +105,26 @@ namespace sti_student_patient_information_system
             }
         }
 
+        
+                private void CenterPanels()
+                {
+                    try
+                    {
+                        // center horizontally within the control's width
+                        if (panelMain != null)
+                        {
+                            int x = Math.Max(10, (this.Width - panelMain.Width) / 2);
+                            panelMain.Left = x;
+                        }
+                
+                        if (panelMedical != null)
+                        {
+                            int x2 = Math.Max(10, (this.Width - panelMedical.Width) / 2);
+                            panelMedical.Left = x2;
+                        }
+                    }
+                    catch { /* swallow layout errors */ }
+                }
         private string GetSelectedBloodType()
         {
             if (rbAPos.Checked) return "A+";
