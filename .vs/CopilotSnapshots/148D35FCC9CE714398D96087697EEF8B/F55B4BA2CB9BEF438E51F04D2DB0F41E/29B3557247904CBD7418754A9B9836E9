@@ -1,0 +1,293 @@
+﻿namespace sti_student_patient_information_system
+{
+    partial class login
+    {
+        private System.ComponentModel.IContainer components = null;
+        private TextBox txtEmail;
+        private TextBox txtPassword;
+        private Button btnLogin;
+        private Label lblForgotPassword;
+        private PictureBox picLogo;
+        private Label lblTitle;
+        private Label lblSubtitle;
+        private Label lblSubtitle2;
+        private Label lblSubtitle3;
+        private Panel panelMain;
+        private Button btnShowPassword;
+        private PictureBox picEmailIcon;
+        private PictureBox picPasswordIcon;
+
+        protected override void Dispose(bool disposing)
+        {
+            if (disposing && (components != null))
+            {
+                components.Dispose();
+            }
+            base.Dispose(disposing);
+        }
+
+        private void InitializeComponent()
+        {
+            panelMain = new Panel();
+            lblTitle = new Label();
+            txtEmail = new TextBox();
+            txtPassword = new TextBox();
+            picEmailIcon = new PictureBox();
+            picPasswordIcon = new PictureBox();
+            btnShowPassword = new Button();
+            btnLogin = new Button();
+            lblForgotPassword = new Label();
+            picLogo = new PictureBox();
+            lblSubtitle = new Label();
+            lblSubtitle2 = new Label();
+            lblSubtitle3 = new Label();
+            panelMain.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)picEmailIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picPasswordIcon).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo).BeginInit();
+            SuspendLayout();
+            // 
+            // panelMain
+            // 
+            panelMain.BackColor = Color.FromArgb(0, 74, 173); // Updated to exact STI logo blue RGB (0, 74, 173)
+            panelMain.Controls.Add(lblTitle);
+            panelMain.Controls.Add(txtEmail);
+            panelMain.Controls.Add(txtPassword);
+            panelMain.Controls.Add(picEmailIcon);
+            panelMain.Controls.Add(picPasswordIcon);
+            panelMain.Controls.Add(btnShowPassword);
+            panelMain.Controls.Add(btnLogin);
+            panelMain.Controls.Add(lblForgotPassword);
+            panelMain.Controls.Add(picLogo);
+            panelMain.Controls.Add(lblSubtitle);
+            panelMain.Controls.Add(lblSubtitle2);
+            panelMain.Controls.Add(lblSubtitle3);
+            panelMain.Dock = DockStyle.Fill;
+            panelMain.Location = new Point(0, 0);
+            panelMain.Name = "panelMain";
+            panelMain.Size = new Size(1200, 700);
+            panelMain.TabIndex = 0;
+            panelMain.Paint += panelMain_Paint;
+            // 
+            // lblTitle
+            // 
+            lblTitle.AutoSize = true;
+            lblTitle.BackColor = Color.Transparent;
+            lblTitle.Font = new Font("Segoe UI", 52F, FontStyle.Bold);
+            lblTitle.ForeColor = Color.FromArgb(255, 193, 7);
+            lblTitle.Location = new Point(151, 150);
+            lblTitle.Name = "lblTitle";
+            lblTitle.Size = new Size(459, 116);
+            lblTitle.TabIndex = 0;
+            lblTitle.Text = "\U0001fa7a LOGIN";
+            lblTitle.Click += lblTitle_Click;
+            // 
+            // txtEmail
+            // 
+            txtEmail.BackColor = Color.White;
+            txtEmail.BorderStyle = BorderStyle.None;
+            txtEmail.Font = new Font("Segoe UI", 16F);
+            txtEmail.ForeColor = Color.Gray;
+            txtEmail.Location = new Point(130, 279);
+            txtEmail.Multiline = true;
+            txtEmail.Name = "txtEmail";
+            txtEmail.Padding = new Padding(50, 12, 15, 12); // Left padding for icon
+            txtEmail.Size = new Size(500, 50);
+            txtEmail.TabIndex = 1;
+            txtEmail.Text = "Email Address:";
+            txtEmail.TextChanged += txtEmail_TextChanged;
+            txtEmail.Enter += txtEmail_Enter;
+            txtEmail.Leave += txtEmail_Leave;
+            // 
+            // txtPassword
+            // 
+            txtPassword.BackColor = Color.White;
+            txtPassword.BorderStyle = BorderStyle.None;
+            txtPassword.Font = new Font("Segoe UI", 16F);
+            txtPassword.ForeColor = Color.Gray;
+            txtPassword.Location = new Point(130, 345);
+            txtPassword.Multiline = true;
+            txtPassword.Name = "txtPassword";
+            txtPassword.Padding = new Padding(50, 12, 50, 12); // Left padding for key icon, right padding for show/hide icon
+            txtPassword.Size = new Size(500, 50);
+            txtPassword.TabIndex = 2;
+            txtPassword.Text = "Password:";
+            txtPassword.Enter += txtPassword_Enter;
+            txtPassword.Leave += txtPassword_Leave;
+            // 
+            // picEmailIcon
+            // 
+            picEmailIcon.BackColor = Color.White;
+            picEmailIcon.Location = new Point(145, 292); // Positioned inside the email text field
+            picEmailIcon.Name = "picEmailIcon";
+            picEmailIcon.Size = new Size(24, 24);
+            picEmailIcon.SizeMode = PictureBoxSizeMode.StretchImage;
+            picEmailIcon.TabIndex = 10;
+            picEmailIcon.TabStop = false;
+            // 
+            // picPasswordIcon
+            // 
+            picPasswordIcon.BackColor = Color.White;
+            picPasswordIcon.Location = new Point(145, 358); // Positioned inside the password text field
+            picPasswordIcon.Name = "picPasswordIcon";
+            picPasswordIcon.Size = new Size(24, 24);
+            picPasswordIcon.SizeMode = PictureBoxSizeMode.StretchImage;
+            picPasswordIcon.TabIndex = 11;
+            picPasswordIcon.TabStop = false;
+            // 
+            // btnShowPassword
+            // 
+            btnShowPassword.BackColor = Color.White;
+            btnShowPassword.FlatAppearance.BorderSize = 0;
+            btnShowPassword.FlatStyle = FlatStyle.Flat;
+            btnShowPassword.Location = new Point(595, 358); // Positioned inside the password text field on the right
+            btnShowPassword.Name = "btnShowPassword";
+            btnShowPassword.Size = new Size(24, 24);
+            btnShowPassword.TabIndex = 3;
+            btnShowPassword.Text = "👁";
+            btnShowPassword.UseVisualStyleBackColor = false;
+            btnShowPassword.Click += btnShowPassword_Click;
+            // 
+            // btnLogin
+            // 
+            btnLogin.BackColor = Color.FromArgb(255, 193, 7);
+            btnLogin.FlatAppearance.BorderSize = 0;
+            btnLogin.FlatStyle = FlatStyle.Flat;
+            btnLogin.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
+            btnLogin.ForeColor = Color.Black;
+            btnLogin.Location = new Point(222, 460);
+            btnLogin.Name = "btnLogin";
+            btnLogin.Size = new Size(300, 60);
+            btnLogin.TabIndex = 4;
+            btnLogin.Text = "Login";
+            btnLogin.UseVisualStyleBackColor = false;
+            btnLogin.Click += btnLogin_Click;
+            // 
+            // lblForgotPassword
+            // 
+            lblForgotPassword.AutoSize = true;
+            lblForgotPassword.Cursor = Cursors.Hand;
+            lblForgotPassword.Font = new Font("Segoe UI", 12F, FontStyle.Underline);
+            lblForgotPassword.ForeColor = Color.White;
+            lblForgotPassword.Location = new Point(480, 398);
+            lblForgotPassword.Name = "lblForgotPassword";
+            lblForgotPassword.Size = new Size(158, 28);
+            lblForgotPassword.TabIndex = 5;
+            lblForgotPassword.Text = "Forget password";
+            lblForgotPassword.Click += lblForgotPassword_Click;
+            // 
+            // picLogo
+            // 
+            picLogo.BackColor = Color.Transparent;
+            picLogo.Location = new Point(695, 80);
+            picLogo.Name = "picLogo";
+            picLogo.Size = new Size(450, 220);
+            picLogo.SizeMode = PictureBoxSizeMode.StretchImage;
+            picLogo.TabIndex = 6;
+            picLogo.TabStop = false;
+            // 
+            // lblSubtitle
+            // 
+            lblSubtitle.AutoSize = true;
+            lblSubtitle.BackColor = Color.Transparent;
+            lblSubtitle.Font = new Font("Segoe UI", 42F, FontStyle.Bold);
+            lblSubtitle.ForeColor = Color.FromArgb(255, 193, 7);
+            lblSubtitle.Location = new Point(759, 320);
+            lblSubtitle.Name = "lblSubtitle";
+            lblSubtitle.Size = new Size(331, 93);
+            lblSubtitle.TabIndex = 7;
+            lblSubtitle.Text = "C.A.R.E.S";
+            // 
+            // lblSubtitle2
+            // 
+            lblSubtitle2.AutoSize = true;
+            lblSubtitle2.BackColor = Color.Transparent;
+            lblSubtitle2.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblSubtitle2.ForeColor = Color.FromArgb(255, 193, 7);
+            lblSubtitle2.Location = new Point(750, 410);
+            lblSubtitle2.Name = "lblSubtitle2";
+            lblSubtitle2.Size = new Size(349, 37);
+            lblSubtitle2.TabIndex = 8;
+            lblSubtitle2.Text = "Clinic Automated Records";
+            // 
+            // lblSubtitle3
+            // 
+            lblSubtitle3.AutoSize = true;
+            lblSubtitle3.BackColor = Color.Transparent;
+            lblSubtitle3.Font = new Font("Segoe UI", 16F, FontStyle.Bold);
+            lblSubtitle3.ForeColor = Color.FromArgb(255, 193, 7);
+            lblSubtitle3.Location = new Point(829, 447);
+            lblSubtitle3.Name = "lblSubtitle3";
+            lblSubtitle3.Size = new Size(184, 37);
+            lblSubtitle3.TabIndex = 9;
+            lblSubtitle3.Text = "Entry System";
+            // 
+            // login
+            // 
+            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleMode = AutoScaleMode.Font;
+            BackColor = Color.FromArgb(0, 74, 173); // Updated to exact STI logo blue RGB (0, 74, 173)
+            ClientSize = new Size(1200, 700);
+            Controls.Add(panelMain);
+            FormBorderStyle = FormBorderStyle.FixedSingle;
+            MaximizeBox = false;
+            Name = "login";
+            StartPosition = FormStartPosition.CenterScreen;
+            Text = "STI C.A.R.E.S - Login";
+            panelMain.ResumeLayout(false);
+            panelMain.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)picEmailIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picPasswordIcon).EndInit();
+            ((System.ComponentModel.ISupportInitialize)picLogo).EndInit();
+            ResumeLayout(false);
+        }
+
+        // Event handlers for placeholder text
+        private void txtEmail_Enter(object sender, EventArgs e)
+        {
+            if (txtEmail.Text == "Email Address:")
+            {
+                txtEmail.Text = "";
+                txtEmail.ForeColor = Color.Black;
+            }
+        }
+
+        private void txtEmail_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtEmail.Text))
+            {
+                txtEmail.Text = "Email Address:";
+                txtEmail.ForeColor = Color.Gray;
+            }
+        }
+
+        private void txtPassword_Enter(object sender, EventArgs e)
+        {
+            if (txtPassword.Text == "Password:")
+            {
+                txtPassword.Text = "";
+                txtPassword.ForeColor = Color.Black;
+                txtPassword.UseSystemPasswordChar = true;
+            }
+        }
+
+        private void txtPassword_Leave(object sender, EventArgs e)
+        {
+            if (string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                txtPassword.Text = "Password:";
+                txtPassword.ForeColor = Color.Gray;
+                txtPassword.UseSystemPasswordChar = false;
+            }
+        }
+
+        private void btnShowPassword_Click(object sender, EventArgs e)
+        {
+            if (txtPassword.Text != "Password:" && !string.IsNullOrWhiteSpace(txtPassword.Text))
+            {
+                txtPassword.UseSystemPasswordChar = !txtPassword.UseSystemPasswordChar;
+                btnShowPassword.Text = txtPassword.UseSystemPasswordChar ? "👁" : "🙈";
+            }
+        }
+    }
+}
